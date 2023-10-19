@@ -23,8 +23,9 @@ const Navbar = () => {
                     </div>
 
                     <div className='hidden lg:flex gap-1'>
-                        <Button>Voting System</Button>
-                        <Button className='bg-green-700 hover:bg-green-800'>Admin🔒</Button>
+                        <Link href="/vote"><Button>Voting System</Button></Link>
+                        <Link href="/sign-in">
+                            <Button className='bg-green-700 hover:bg-green-800'>Admin🔒</Button></Link>
                     </div>
                 </div>
 
