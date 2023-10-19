@@ -5,10 +5,10 @@ import Link from "next/link";
 
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
     return (
-        <div className='bg-green-900 px-20 py-10 md:h-screen flex items-center'>
-            <div className='flex flex-col md:flex-row gap-5 w-full items-center text-neutral-200'>
+        <div className='bg-green-900 md:px-20 md:py-10 md:h-screen md:flex items-center overflow-hidden'>
+            <div className='flex flex-col md:flex-row gap-5 w-full items-center text-neutral-200 px-5'>
                 <div className='flex-1'>
-                    <div className=' w-96 mx-auto'>
+                    <div className=' md:w-96 md:mx-auto'>
                         <div className='flex items-center gap-2'>
                             <Image src="/lasu.png" alt='logo' width={80} height={80} className='rounded-full' />
                             <Image src="/logo.jpg" alt='logo' width={80} height={80} className='rounded-full' />
