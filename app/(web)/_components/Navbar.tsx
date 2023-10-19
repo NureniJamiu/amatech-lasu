@@ -30,7 +30,9 @@ const Navbar = () => {
 
 
 
-                <MobileMenu />
+                <div className='lg:hidden'>
+                    <MobileMenu />
+                </div>
             </div>
         </nav>
     )

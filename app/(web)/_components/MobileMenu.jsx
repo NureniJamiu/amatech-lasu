@@ -13,27 +13,25 @@ import Link from "next/link";
 
 const MobileMenu = () => {
   return (
-    <div className="lg:hidden">
-      <Sheet>
-        <SheetTrigger>
-          <Menu />
-        </SheetTrigger>
-        <SheetContent>
-          <SheetHeader>
-            <SheetTitle></SheetTitle>
-            <SheetDescription className="space-y-2">
-              {navLinks.map(({ title, url }) => (
-                <p key={title} className="py-2 text-lg ">
-                  <Link href={url} className="capitalize">
-                    {title}
-                  </Link>
-                </p>
-              ))}
-            </SheetDescription>
-          </SheetHeader>
-        </SheetContent>
-      </Sheet>
-    </div>
+    <Sheet>
+      <SheetTrigger>
+        <Menu />
+      </SheetTrigger>
+      <SheetContent>
+        <SheetHeader>
+          <SheetTitle></SheetTitle>
+          <SheetDescription className="space-y-2">
+            {navLinks.map(({ title, url }) => (
+              <p key={title} className="py-2 text-lg ">
+                <Link href={url} className="capitalize">
+                  {title}
+                </Link>
+              </p>
+            ))}
+          </SheetDescription>
+        </SheetHeader>
+      </SheetContent>
+    </Sheet>
   );
 };
 
