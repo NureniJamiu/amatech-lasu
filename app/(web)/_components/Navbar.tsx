@@ -23,13 +23,11 @@ const Navbar = () => {
                     </div>
 
                     <div className='hidden lg:flex gap-1'>
-                        <Link href="/vote"><Button>Voting System</Button></Link>
+                        <Link href="/vote"><Button className='border-2 rounded-full border-green-600 text-green-700 hover:bg-green-600 hover:text-white'>Voting System</Button></Link>
                         <Link href="/sign-in">
-                            <Button className='bg-green-700 hover:bg-green-800'>Admin🔒</Button></Link>
+                            <Button className='btn-gradient rounded-full'>Admin🔒</Button></Link>
                     </div>
                 </div>
-
-
 
                 <div className='lg:hidden'>
                     <MobileMenu />
