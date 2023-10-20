@@ -13,9 +13,12 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
                             <Image src="/lasu.png" alt='logo' width={80} height={80} className='rounded-full' />
                             <Image src="/logo.jpg" alt='logo' width={80} height={80} className='rounded-full' />
                         </div>
-                        <span className='hidden md:block text-4xl font-bold '>Welcome<span className='text-5xl'>👋</span></span>
+                        <span className='hidden md:block text-4xl font-bold '>Administrators only</span>
                     </div>
-                    <p className='hidden md:block w-96 mx-auto text-xl mt-3'>Please <Link href="/sign-in" className='underline text-blue-600 italic'>Signin</Link> or <Link className='underline text-blue-600 italic' href="/sign-up">Signup</Link> to continue...</p>
+                    <p className='hidden md:block w-96 mx-auto text-xl mt-3'>This portal is exclusively for authorized administrators who play a pivotal role in maintaining and enhancing the website.
+
+                        <span className='inline-block text-sm mt-2'>Here, you{"'"}ll find the tools and features necessary to oversee and improve our services.</span> </p>
+
                 </div>
 
                 <div className='md:flex-1'>

@@ -15,9 +15,9 @@ const Navbar = () => {
         <nav className='sticky left-0  top-0 h-20 bg-white w-full px-5 '>
             <div className='md:px-10 lg:px-20 flex items-center justify-between gap-5'>
                 <div className='flex items-center gap-1'>
-                    <Image src="/lasu.png" alt='amatech logo' width={50} height={50} />
+                    <Link href="https://www.lasu.edu.ng"><Image src="/lasu.png" alt='amatech logo' width={50} height={50} /></Link>
 
-                    <Image src="/logo.jpg" alt='amatech logo' width={70} height={70} />
+                    <Link href="/"><Image src="/logo.jpg" alt='amatech logo' width={70} height={70} /></Link>
                 </div>
 
                 <div className='hidden lg:flex items-center gap-7'>
