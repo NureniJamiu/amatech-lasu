@@ -37,12 +37,12 @@ const MobileMenu = () => {
 
         <div className="flex flex-col mt-3 gap-2">
           <Link href="/vote">
-            <Button className="border-2 rounded-full border-green-600 text-green-700 hover:bg-green-600 hover:text-white">
+            <Button className="border-2 rounded border-green-600 text-green-700 hover:bg-green-600 hover:text-white">
               Voting System
             </Button>
           </Link>
           <Link href="/sign-in">
-            <Button className="btn-gradient rounded-full">Admin🔒</Button>
+            <Button className="btn-gradient rounded">Admin🔒</Button>
           </Link>
         </div>
       </SheetContent>

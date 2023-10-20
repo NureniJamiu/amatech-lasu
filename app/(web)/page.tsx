@@ -3,7 +3,7 @@ import HeroSection from './_components/_sections/HeroSection'
 
 export default function Home() {
   return (
-    <main >
+    <main>
       <HeroSection />
     </main>
   )
