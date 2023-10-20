@@ -18,7 +18,6 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
                     <p className='hidden md:block w-96 mx-auto text-xl mt-3'>This portal is exclusively for authorized administrators who play a pivotal role in maintaining and enhancing the website.
 
                         <span className='inline-block text-sm mt-2'>Here, you{"'"}ll find the tools and features necessary to oversee and improve our services.</span> </p>
-
                 </div>
 
                 <div className='md:flex-1'>

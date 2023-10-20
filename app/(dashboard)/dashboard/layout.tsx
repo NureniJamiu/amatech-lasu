@@ -1,18 +1,10 @@
 "use client";
 
-import { SetStateAction, useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import { useState } from "react";
 // import axios from "axios";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 
-// pages
-// import Default from "@/components/dashboard/views/Default";
-// import AllPosts from "@/components/dashboard/views/AllPosts";
-// import Lecturer from "@/components/dashboard/views/Lecturer";
-// import CreatePost from "@/components/dashboard/views/CreatePost";
-// import Members from "@/components/dashboard/views/Members";
 
 import { UserButton, useUser } from "@clerk/nextjs";
 import {
@@ -23,13 +15,9 @@ import {
   Presentation,
   Users,
 } from "lucide-react";
-import DashboardLandingPage from "./page";
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const { user } = useUser();
   console.log(user);
-
-  const router = useRouter();
-  //   const user = useSelector((state) => state.user.value);
 
   const [selectedNavItem, setSelectedNavItem] = useState("default");
   const [activeItem, setActiveItem] = useState("Home");
@@ -37,48 +25,24 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     {
       name: "Home",
       icon: <Home />,
-      elementRender: "default",
+      slug: "/dashboard",
     },
     {
       name: "All Posts",
       icon: <Newspaper />,
-      elementRender: "allPosts",
+      slug: "/dashboard/posts",
     },
     {
       name: "Lecturers",
       icon: <Presentation />,
-      elementRender: "lecturers",
+      slug: "/dashboard/lecturers",
     },
     {
       name: "SRC Members",
       icon: <Users />,
-      elementRender: "members",
+      slug: "/dashboard/members",
     },
-    // { name: "Create Post", slug: "#", icon: <MdEditOff /> },
   ];
-
-  const handleNavItemClick = (
-    navItem: SetStateAction<string>,
-    activeNav: SetStateAction<string>
-  ) => {
-    setActiveItem(activeNav);
-    setSelectedNavItem(navItem);
-  };
-
-  //   const handleLogout = async () => {
-  //     try {
-  //       await axios.get("/api/users/logout");
-  //       router.push("/login");
-  //       localStorage.removeItem("persist:root");
-  //       setTimeout(() => {
-  //         toast.success("Logout successful!", {
-  //           duration: 1000,
-  //         });
-  //       }, 1000);
-  //     } catch (error) {
-  //       toast.error("Something went wrong! User not logged out.");
-  //     }
-  //   };
 
   return (
     <section className="h-screen">
@@ -101,23 +65,21 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
               let isActive = _.name == activeItem;
               let activeClass = isActive ? "text-green-700" : "text-gray-600";
               return (
-                <div
-                  className={`pl-6 py-2 hover:bg-green-400 border mx-2 my-1 rounded border-t ${activeClass}`}
+                <Link href={_?.slug}
+                  className={`block pl-6 py-2 hover:bg-green-400 border mx-2 my-1 rounded border-t ${activeClass}`}
                   key={index}
-                  onClick={() => handleNavItemClick(_?.elementRender, _?.name)}
                 >
                   <div className="flex items-center gap-3 cursor-pointer">
                     {_?.icon}
                     {_?.name}
                   </div>
-                </div>
+                </Link>
               );
             })}
           </div>
           <div className="flex flex-col gap-2 mx-2">
             <div
               className=" flex items-center justify-center gap-3 rounded text-gray-100 p-3 bg-green-600 border-2 border-green-700 font-semibold cursor-pointer"
-            //   onClick={() => handleNavItemClick("createPost")}
             >
               <Edit />
               Create Post
@@ -127,7 +89,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             //   onClick={handleLogout}
             >
               <LogOut />
-              Logout
+              Sign out
             </div>
           </div>
         </div>
@@ -148,41 +110,22 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                     id="search"
                     name="search"
                     placeholder="Search..."
-                    // value={user.email}
-                    // onChange={(e) =>
-                    //   setUser({ ...user, email: e.target.value })
-                    // }
-                    className="w-60 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-green-500 focus:border-green-500 shadow-md"
+                    className="w-60 px-3 py-1 border border-gray-300 rounded focus:outline-none focus:ring-green-500 focus:border-green-500 shadow-md"
                     required
                   />
                 </form>
                 <div>
-                  <UserButton />
+                  <UserButton afterSignOutUrl="/" />
                 </div>
               </div>
             </div>
 
-            {/* <div className="mt-20 bg-gray-100 h-[calc(100vh-173px)] rounded-t-3xl p-5">
-                            {selectedNavItem === "allPosts" && <AllPosts />}
-                            {selectedNavItem === "lecturers" && <Lecturer />}
-                            {selectedNavItem === "createPost" && <CreatePost />}
-                            {selectedNavItem === "members" && <Members />}
-                          </div> */}
             <div className="mt-20 bg-gray-100 h-[calc(100vh-173px)] rounded-t-3xl p-5">
-              {selectedNavItem === "default" && <DashboardLandingPage />}
+              {children}
             </div>
-
           </div>
         </div>
       </div>
-
-      <Toaster
-        position="top-center"
-        containerStyle={{
-          position: "absolute",
-          top: 20,
-        }}
-      />
     </section>
   );
 };
