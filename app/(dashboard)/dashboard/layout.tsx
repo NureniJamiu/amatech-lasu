@@ -16,8 +16,8 @@ import {
   Users,
 } from "lucide-react";
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
+
   const { user } = useUser();
-  console.log(user);
 
   const [selectedNavItem, setSelectedNavItem] = useState("default");
   const [activeItem, setActiveItem] = useState("Home");
@@ -120,7 +120,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
               </div>
             </div>
 
-            <div className="mt-20 bg-gray-100 h-[calc(100vh-173px)] rounded-t-3xl p-5">
+            <div className="mt-20 bg-gray-100 h-[calc(100vh-173px)] rounded-t-3xl p-5 overflow-scroll">
               {children}
             </div>
           </div>
