@@ -9,7 +9,7 @@ const DashboardLandingPage = () => {
             <div className="w-full border bg-white rounded-xl px-5 py-3 ">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-5">
-                        <div className="bg-green-200 w-10 h-10 flex items-center justify-center rounded-full">
+                        <div className="hidden md:flex bg-green-200 w-10 h-10 items-center justify-center rounded-full">
                             <User size={32} color="green" />
                         </div>
                         <div>
@@ -21,7 +21,7 @@ const DashboardLandingPage = () => {
                             </p>
                         </div>
                     </div>
-                    <div className="flex items-center gap-1 text-green-700 font-semibold cursor-pointer">
+                    <div className="hidden md:flex items-center gap-1 text-green-700 font-semibold cursor-pointer">
                         Proceed
                         <span>
                             <ArrowRightIcon size={22} color="green" />
@@ -29,7 +29,7 @@ const DashboardLandingPage = () => {
                     </div>
                 </div>
             </div>
-            <div className="grid grid-cols-4 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {/* CARD  */}
                 <div className="flex flex-col relative bg-green-600 h-72 rounded-xl overflow-hidden justify-end cursor-pointer hover:scale-105 transition ease-in-out duration-200">
                     <div className="absolute -top-8 -left-10 w-32 h-32 rounded-full bg-green-400"></div>
