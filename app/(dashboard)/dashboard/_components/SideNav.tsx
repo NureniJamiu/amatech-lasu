@@ -31,9 +31,9 @@ const SideNav = () => {
     const [activeItem, setActiveItem] = useState("Home");
 
     return (
-        <div className="flex flex-col justify-between w-52 h-full">
+        <div className="flex flex-col justify-between md:w-full lg:w-52  h-full">
             <div>
-                <div className="pb-5 p-5">
+                <div className="pb-5 lg:p-5">
                     <Link href="/" className="flex items-center justify-between">
                         <Image
                             src="/logo.jpg"
@@ -49,7 +49,7 @@ const SideNav = () => {
                     let activeClass = isActive ? "text-green-700" : "text-gray-600";
                     return (
                         <Link href={_?.slug}
-                            className={`block pl-6 py-2 hover:bg-green-400 border mx-2 my-1 rounded border-t ${activeClass}`}
+                            className={`block pl-3 py-2 hover:bg-green-400 border-b lg:mx-2 my-1 lg:rounded lg:border-t ${activeClass}`}
                             key={index}
                         >
                             <div className="flex items-center gap-3 cursor-pointer">

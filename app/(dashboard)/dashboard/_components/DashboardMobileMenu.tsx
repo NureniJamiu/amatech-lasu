@@ -18,7 +18,7 @@ const DashboardMobileMenu = () => {
             <SheetTrigger>
                 <Menu />
             </SheetTrigger>
-            <SheetContent side={"left"} className="bg-white w-[250px]">
+            <SheetContent side={"left"} className="bg-white w-[300px]">
                 <SheetHeader>
                     <SheetTitle></SheetTitle>
                     <SheetDescription className=""></SheetDescription>
