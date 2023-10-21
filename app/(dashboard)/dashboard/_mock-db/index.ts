@@ -6,7 +6,21 @@ type Lecturer = {
     email: string
     phone: number
 }
-type Member = {
+type ExecutiveMember = {
+    id: string
+    firstname: string
+    lastname: string
+    role: string
+    phone: number
+    level: number
+    email: string
+    membership: string
+    bio: string
+    linkedin: string
+    twitter: string
+    image: string
+}
+type LegislativeMember = {
     id: string
     firstname: string
     lastname: string
@@ -49,7 +63,7 @@ export const lecturers: Lecturer[] = [
     // ...
 ]
   
-export const executiveMembers: Member[] = [
+export const executiveMembers: ExecutiveMember[] = [
     {
       id: "728ed52f",
       firstname: "Daniel",
@@ -193,7 +207,7 @@ export const executiveMembers: Member[] = [
     // ...
 ]
 
-export const legislativeMembers: Member[] = [
+export const legislativeMembers: LegislativeMember[] = [
   {
     id: "728ed52f",
     firstname: "Tope",
