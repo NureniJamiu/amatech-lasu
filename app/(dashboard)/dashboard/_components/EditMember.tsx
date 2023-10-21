@@ -29,9 +29,22 @@ import {
 import { Input } from "@/components/ui/input"
 import toast, { Toaster } from "react-hot-toast"
 
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-
+interface EditMemberProps {
+  member: {
+    id: string
+    firstname: string
+    lastname: string
+    membership: string
+    role: string
+    email: string
+    phone: number
+    level: string
+    linkedin: string
+    twitter: string
+    bio: string
+    image: string
+  };
+}
 
 const FormSchema = z.object({
   firstname: z.string().min(2, {
@@ -60,11 +73,23 @@ const FormSchema = z.object({
 })
 
 
-const AddMember = () => {
-  const [content, setContent] = useState('')
+const EditMember: React.FC<EditMemberProps> = ({ member }) => {
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
+    defaultValues: {
+      firstname: member.firstname,
+      lastname: member.lastname,
+      membership: member.membership,
+      email: member.email,
+      phone: member.phone,
+      level: member.level,
+      role: member.role,
+      linkedin: member.linkedin,
+      twitter: member.twitter,
+      bio: member.bio,
+      image: member.image
+    }
   })
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
@@ -267,7 +292,6 @@ const AddMember = () => {
           />
         </div>
 
-
         <Button type="submit" className="btn-gradient rounded w-full">Submit</Button>
       </form>
       <Toaster />
@@ -275,4 +299,4 @@ const AddMember = () => {
   )
 }
 
-export default AddMember
+export default EditMember

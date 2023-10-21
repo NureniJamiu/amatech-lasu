@@ -5,6 +5,15 @@ import { DataTable } from "./data-table"
 import { lecturers } from '../../_mock-db'
 import { Button } from '@/components/ui/button'
 
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
+import AddLecturer from '../../_components/AddLecturer'
 
 
 const Lecturers = () => {
@@ -12,8 +21,28 @@ const Lecturers = () => {
         <div className="">
             <div className='flex items-center justify-between'>
                 <p className='text-green-600 my-5 text-xl md:text-2xl font-semibold pl-2'>Lecturers</p>
-                <Button className='btn-gradient rounded'>Add Lecturer</Button>
+                <div>
+                    <Dialog>
+                        <DialogTrigger className="w-full">
+                            <Button className='btn-gradient rounded py-5'>Add Lecturer</Button>
+                        </DialogTrigger>
+
+                        <DialogContent className="bg-white rounded-xl">
+                            <DialogHeader>
+                                <DialogTitle>Add Lecturer</DialogTitle>
+                                <DialogDescription>
+                                    Click the submit button when done.
+                                </DialogDescription>
+                            </DialogHeader>
+
+                            <AddLecturer />
+                        </DialogContent>
+                    </Dialog>
+                </div>
             </div>
+
+
+
             <DataTable columns={columns} data={lecturers} />
 
         </div>

@@ -2,6 +2,8 @@
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
+import { useState } from "react"
+
 import * as z from "zod"
 
 import { Button } from "@/components/ui/button"
@@ -27,16 +29,19 @@ import {
 import { Input } from "@/components/ui/input"
 import toast, { Toaster } from "react-hot-toast"
 
-interface AddLecturerProps {
-  lecturer: {
-    id: string,
-    title: string,
-    firstname: string,
-    lastname: string,
-    email: string,
-    phone: number
-  };
-}
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+
+// interface AddLecturerProps {
+//   lecturer: {
+//     id: string,
+//     title: string,
+//     firstname: string,
+//     lastname: string,
+//     email: string,
+//     phone: number
+//   };
+// }
 
 const FormSchema = z.object({
   firstname: z.string().min(2, {
@@ -58,16 +63,11 @@ const FormSchema = z.object({
 })
 
 
-const AddLecturer: React.FC<AddLecturerProps> = ({ lecturer }) => {
+const AddLecturer = () => {
+  const [content, setContent] = useState('')
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
-    defaultValues: {
-      title: lecturer.title,
-      firstname: lecturer.firstname,
-      lastname: lecturer.lastname,
-      email: lecturer.email,
-      phone: lecturer.phone,
-    }
   })
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
@@ -176,7 +176,21 @@ const AddLecturer: React.FC<AddLecturerProps> = ({ lecturer }) => {
           )}
         />
 
-        <Button type="submit">Submit</Button>
+        <FormItem>
+          <FormLabel>Bio</FormLabel>
+          <div className="flex justify-between gap-2 border border-zinc-800 rounded">
+            <CKEditor
+              editor={ClassicEditor}
+              data={content}
+              onChange={(event, editor) => {
+                const content = editor.getData();
+                setContent(content);
+              }}
+            />
+          </div>
+        </FormItem>
+
+        <Button type="submit" className="btn-gradient rounded w-full">Submit</Button>
       </form>
       <Toaster />
     </Form>

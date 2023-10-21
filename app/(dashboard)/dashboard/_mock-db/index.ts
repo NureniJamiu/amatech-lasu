@@ -13,6 +13,12 @@ type Member = {
     role: string
     phone: number
     level: number
+    email: string
+    membership: string
+    bio: string
+    linkedin: string
+    twitter: string
+    image: string
 }
 
 type Post = {
@@ -43,14 +49,20 @@ export const lecturers: Lecturer[] = [
     // ...
 ]
   
-export const members: Member[] = [
+export const executiveMembers: Member[] = [
     {
       id: "728ed52f",
       firstname: "Daniel",
       lastname: "Adetimehin",
       role: "President",
       phone: 9123343333,
-      level: 300
+      level: 300,
+      email: "test@test.com",
+    membership: "executive",
+    bio: "Web Artisan and a Tech Enthusiast",
+    linkedin: "https://example.com",
+    twitter: "https://test.com",
+    image: "https://cloudinary..."
     },
     {
       id: "489e1d42",
@@ -58,7 +70,13 @@ export const members: Member[] = [
       lastname: "Nureni",
       role: "P.R.O",
       phone: 9123343333,
-      level: 100
+      level: 100,
+      email: "test@test.com",
+      membership: "executive",
+      bio: "Web Artisan and a Tech Enthusiast",
+      linkedin: "https://example.com",
+      twitter: "https://test.com",
+      image: "https://cloudinary..."
     },
     {
       id: "489e1d42",
@@ -66,7 +84,13 @@ export const members: Member[] = [
       lastname: "Nureni",
       role: "P.R.O",
       phone: 9123343333,
-      level: 100
+      level: 100,
+      email: "test@test.com",
+      membership: "executive",
+      bio: "Web Artisan and a Tech Enthusiast",
+      linkedin: "https://example.com",
+      twitter: "https://test.com",
+      image: "https://cloudinary..."
     },
     {
       id: "489e1d42",
@@ -74,7 +98,13 @@ export const members: Member[] = [
       lastname: "Nureni",
       role: "P.R.O",
       phone: 9123343333,
-      level: 100
+      level: 100,
+      email: "test@test.com",
+      membership: "executive",
+      bio: "Web Artisan and a Tech Enthusiast",
+      linkedin: "https://example.com",
+      twitter: "https://test.com",
+      image: "https://cloudinary..."
     },
     {
       id: "489e1d42",
@@ -82,7 +112,13 @@ export const members: Member[] = [
       lastname: "Nureni",
       role: "P.R.O",
       phone: 9123343333,
-      level: 100
+      level: 100,
+      email: "test@test.com",
+      membership: "executive",
+      bio: "Web Artisan and a Tech Enthusiast",
+      linkedin: "https://example.com",
+      twitter: "https://test.com",
+      image: "https://cloudinary..."
     },
     {
       id: "489e1d42",
@@ -90,7 +126,13 @@ export const members: Member[] = [
       lastname: "Nureni",
       role: "P.R.O",
       phone: 9123343333,
-      level: 100
+      level: 100,
+      email: "test@test.com",
+      membership: "executive",
+      bio: "Web Artisan and a Tech Enthusiast",
+      linkedin: "https://example.com",
+      twitter: "https://test.com",
+      image: "https://cloudinary..."
     },
     {
       id: "489e1d42",
@@ -98,7 +140,13 @@ export const members: Member[] = [
       lastname: "Nureni",
       role: "P.R.O",
       phone: 9123343333,
-      level: 100
+      level: 100,
+      email: "test@test.com",
+      membership: "executive",
+      bio: "Web Artisan and a Tech Enthusiast",
+      linkedin: "https://example.com",
+      twitter: "https://test.com",
+      image: "https://cloudinary..."
     },
     {
       id: "489e1d42",
@@ -106,7 +154,13 @@ export const members: Member[] = [
       lastname: "Nureni",
       role: "P.R.O",
       phone: 9123343333,
-      level: 100
+      level: 100,
+      email: "test@test.com",
+      membership: "executive",
+      bio: "Web Artisan and a Tech Enthusiast",
+      linkedin: "https://example.com",
+      twitter: "https://test.com",
+      image: "https://cloudinary..."
     },
     {
       id: "489e1d42",
@@ -114,7 +168,13 @@ export const members: Member[] = [
       lastname: "Nureni",
       role: "P.R.O",
       phone: 9123343333,
-      level: 100
+      level: 100,
+      email: "test@test.com",
+      membership: "executive",
+      bio: "Web Artisan and a Tech Enthusiast",
+      linkedin: "https://example.com",
+      twitter: "https://test.com",
+      image: "https://cloudinary..."
     },
     {
       id: "489e1d42",
@@ -122,26 +182,161 @@ export const members: Member[] = [
       lastname: "Nureni",
       role: "P.R.O",
       phone: 9123343333,
-      level: 100
-    },
-    {
-      id: "489e1d42",
-      firstname: "Jamiu",
-      lastname: "Nureni",
-      role: "P.R.O",
-      phone: 9123343333,
-      level: 100
-    },
-    {
-      id: "489e1d42",
-      firstname: "Jamiu",
-      lastname: "Nureni",
-      role: "P.R.O",
-      phone: 9123343333,
-      level: 100
+      level: 100,
+      email: "test@test.com",
+      membership: "executive",
+      bio: "Web Artisan and a Tech Enthusiast",
+      linkedin: "https://example.com",
+      twitter: "https://test.com",
+      image: "https://cloudinary..."
     },
     // ...
 ]
+
+export const legislativeMembers: Member[] = [
+  {
+    id: "728ed52f",
+    firstname: "Tope",
+    lastname: "Sodeeq",
+    role: "President",
+    phone: 9123343333,
+    level: 300,
+    email: "test@test.com",
+    membership: "executive",
+    bio: "Web Artisan and a Tech Enthusiast",
+    linkedin: "https://example.com",
+    twitter: "https://test.com",
+    image: "https://cloudinary..."
+  },
+  {
+    id: "489e1d42",
+    firstname: "Jamiu",
+    lastname: "Nureni",
+    role: "P.R.O",
+    phone: 9123343333,
+    level: 100,
+    email: "test@test.com",
+    membership: "executive",
+    bio: "Web Artisan and a Tech Enthusiast",
+    linkedin: "https://example.com",
+    twitter: "https://test.com",
+    image: "https://cloudinary..."
+  },
+  {
+    id: "489e1d42",
+    firstname: "Jamiu",
+    lastname: "Nureni",
+    role: "P.R.O",
+    phone: 9123343333,
+    level: 100,
+    email: "test@test.com",
+    membership: "executive",
+    bio: "Web Artisan and a Tech Enthusiast",
+    linkedin: "https://example.com",
+    twitter: "https://test.com",
+    image: "https://cloudinary..."
+  },
+  {
+    id: "489e1d42",
+    firstname: "Jamiu",
+    lastname: "Nureni",
+    role: "P.R.O",
+    phone: 9123343333,
+    level: 100,
+    email: "test@test.com",
+    membership: "executive",
+    bio: "Web Artisan and a Tech Enthusiast",
+    linkedin: "https://example.com",
+    twitter: "https://test.com",
+    image: "https://cloudinary..."
+  },
+  {
+    id: "489e1d42",
+    firstname: "Jamiu",
+    lastname: "Nureni",
+    role: "P.R.O",
+    phone: 9123343333,
+    level: 100,
+    email: "test@test.com",
+    membership: "executive",
+    bio: "Web Artisan and a Tech Enthusiast",
+    linkedin: "https://example.com",
+    twitter: "https://test.com",
+    image: "https://cloudinary..."
+  },
+  {
+    id: "489e1d42",
+    firstname: "Jamiu",
+    lastname: "Nureni",
+    role: "P.R.O",
+    phone: 9123343333,
+    level: 100,
+    email: "test@test.com",
+    membership: "executive",
+    bio: "Web Artisan and a Tech Enthusiast",
+    linkedin: "https://example.com",
+    twitter: "https://test.com",
+    image: "https://cloudinary..."
+  },
+  {
+    id: "489e1d42",
+    firstname: "Jamiu",
+    lastname: "Nureni",
+    role: "P.R.O",
+    phone: 9123343333,
+    level: 100,
+    email: "test@test.com",
+    membership: "executive",
+    bio: "Web Artisan and a Tech Enthusiast",
+    linkedin: "https://example.com",
+    twitter: "https://test.com",
+    image: "https://cloudinary..."
+  },
+  {
+    id: "489e1d42",
+    firstname: "Jamiu",
+    lastname: "Nureni",
+    role: "P.R.O",
+    phone: 9123343333,
+    level: 100,
+    email: "test@test.com",
+    membership: "executive",
+    bio: "Web Artisan and a Tech Enthusiast",
+    linkedin: "https://example.com",
+    twitter: "https://test.com",
+    image: "https://cloudinary..."
+  },
+  {
+    id: "489e1d42",
+    firstname: "Jamiu",
+    lastname: "Nureni",
+    role: "P.R.O",
+    phone: 9123343333,
+    level: 100,
+    email: "test@test.com",
+    membership: "executive",
+    bio: "Web Artisan and a Tech Enthusiast",
+    linkedin: "https://example.com",
+    twitter: "https://test.com",
+    image: "https://cloudinary..."
+  },
+  {
+    id: "489e1d42",
+    firstname: "Jamiu",
+    lastname: "Nureni",
+    role: "P.R.O",
+    phone: 9123343333,
+    level: 100,
+    email: "test@test.com",
+    membership: "executive",
+    bio: "Web Artisan and a Tech Enthusiast",
+    linkedin: "https://example.com",
+    twitter: "https://test.com",
+    image: "https://cloudinary..."
+  },
+  // ...
+]
+
 
 export const posts: Post[] = [
     {

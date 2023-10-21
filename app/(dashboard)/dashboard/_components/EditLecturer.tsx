@@ -2,6 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
+import { useState } from "react"
 import * as z from "zod"
 
 import { Button } from "@/components/ui/button"
@@ -29,7 +30,6 @@ import toast, { Toaster } from "react-hot-toast"
 
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { SetStateAction, useState } from "react"
 
 interface EditLecturerProps {
   lecturer: {
