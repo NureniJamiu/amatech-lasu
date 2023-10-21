@@ -20,7 +20,7 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
-import AddLecturer from "../_components/AddLecturer"
+import AddLecturer from "../../_components/AddLecturer"
 
 type Lecturer = {
     id: string
@@ -69,7 +69,7 @@ export const columns: ColumnDef<Lecturer>[] = [
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <Button variant="ghost" className="h-8 w-8 p-0">
-                                <span className="sr-only">Open menu</span>
+                                <span className="sr-only">Open menuu</span>
                                 <MoreHorizontal className="h-4 w-4" />
                             </Button>
                         </DropdownMenuTrigger>
