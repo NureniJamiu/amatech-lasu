@@ -12,6 +12,16 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
+import AddLecturer from "../_components/AddLecturer"
+
 type Lecturer = {
     id: string
     title: string
@@ -55,23 +65,40 @@ export const columns: ColumnDef<Lecturer>[] = [
             const lecturer = row.original
 
             return (
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="h-8 w-8 p-0">
-                            <span className="sr-only">Open menu</span>
-                            <MoreHorizontal className="h-4 w-4" />
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end" className="bg-white">
-                        <DropdownMenuItem
-                            onClick={() => navigator.clipboard.writeText(lecturer.id)}
-                        >
-                            <p className={`${iconStyle} hover:bg-green-200 hover:text-green-700`}><Edit size={15} />Edit</p>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem>
-                            <p className={`${iconStyle} hover:bg-red-100 hover:text-red-600`}><Delete size={15} /> Delete </p></DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
+                <Dialog >
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button variant="ghost" className="h-8 w-8 p-0">
+                                <span className="sr-only">Open menu</span>
+                                <MoreHorizontal className="h-4 w-4" />
+                            </Button>
+                        </DropdownMenuTrigger>
+
+                        <DropdownMenuContent align="end" className="bg-white rounded">
+                            <DialogTrigger className="w-full">
+                                <DropdownMenuItem
+                                >
+                                    <p className={`${iconStyle} hover:bg-green-200 hover:text-green-700`}><Edit size={15} />Edit</p>
+                                </DropdownMenuItem>
+                            </DialogTrigger>
+
+                            <DropdownMenuItem>
+                                <p className={`${iconStyle} hover:bg-red-100 hover:text-red-600`}><Delete size={15} /> Delete </p>
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+
+                        <DialogContent className="bg-white rounded-xl">
+                            <DialogHeader>
+                                <DialogTitle>Edit Lecturer</DialogTitle>
+                                <DialogDescription>
+                                    Click the submit button when done.
+                                </DialogDescription>
+                            </DialogHeader>
+
+                            <AddLecturer lecturer={lecturer} />
+                        </DialogContent>
+                    </DropdownMenu>
+                </Dialog>
             )
         },
     },

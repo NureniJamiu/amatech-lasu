@@ -26,19 +26,19 @@ type Post = {
 export const lecturers: Lecturer[] = [
     {
       id: "728ed52f",
-      title: "Mr",
+      title: "mr.",
       firstname: "Olatomiwa",
       lastname: "Bright",
       email: "m@example.com",
-      phone: 9123343333
+      phone: 912334333
     },
     {
       id: "489e1d42",
-      title: "Mr",
+      title: "mr.",
       firstname: "Lawal",
       lastname: "Yusuf",
       email: "example@gmail.com",
-      phone: 9123343333
+      phone: 912334333
     },
     // ...
 ]
