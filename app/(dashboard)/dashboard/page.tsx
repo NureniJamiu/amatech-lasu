@@ -1,4 +1,4 @@
-import { ArrowBigRight, ArrowRightIcon, PersonStanding, User } from "lucide-react";
+import { ArrowRightIcon, User } from "lucide-react";
 import React from "react";
 
 // import { BsPersonFill } from "react-icons/bs";

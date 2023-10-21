@@ -20,7 +20,7 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
-import AddLecturer from "../../_components/AddLecturer"
+import EditLecturer from "../../_components/EditLecturer"
 
 type Lecturer = {
     id: string
@@ -95,7 +95,7 @@ export const columns: ColumnDef<Lecturer>[] = [
                                 </DialogDescription>
                             </DialogHeader>
 
-                            <AddLecturer lecturer={lecturer} />
+                            <EditLecturer lecturer={lecturer} />
                         </DialogContent>
                     </DropdownMenu>
                 </Dialog>

@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+.ck-editor {
+  width: 320px !important;
+  border-radius: 50px !important;
+}
+
+.ck-editor__editable {
+  height: 120px;
+}
+
 .bg-gradient {
   background-image: linear-gradient(to top, #65b30d 0%, #0f7652 100%);
 }
@@ -29,5 +38,11 @@
 @media (min-width: 768px) {
   .btn-gradient {
     padding: 0 35px;
+  }
+}
+
+@media (min-width: 768px) {
+  .ck-editor {
+    width: 460px !important;
   }
 }

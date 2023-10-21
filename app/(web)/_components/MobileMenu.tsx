@@ -13,14 +13,16 @@ import { Menu } from "lucide-react";
 import { navLinks } from "../_mock";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { useUser } from "@clerk/nextjs";
 
 const MobileMenu = () => {
+  const { isSignedIn } = useUser()
   return (
     <Sheet>
       <SheetTrigger>
         <Menu />
       </SheetTrigger>
-      <SheetContent>
+      <SheetContent className="bg-white">
         <SheetHeader>
           <SheetTitle></SheetTitle>
           <SheetDescription className=""></SheetDescription>
@@ -41,8 +43,8 @@ const MobileMenu = () => {
               Voting System
             </Button>
           </Link>
-          <Link href="/sign-in">
-            <Button className="btn-gradient rounded">Admin🔒</Button>
+          <Link href={isSignedIn ? "/dashboard" : "/sign-in"}>
+            <Button className="btn-gradient rounded">{isSignedIn ? "Dashboard" : "Admin🔒"}</Button>
           </Link>
         </div>
       </SheetContent>

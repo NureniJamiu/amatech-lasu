@@ -15,6 +15,7 @@ const Lecturers = () => {
                 <Button className='btn-gradient rounded'>Add Lecturer</Button>
             </div>
             <DataTable columns={columns} data={lecturers} />
+
         </div>
     )
 }
