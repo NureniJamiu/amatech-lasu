@@ -2,7 +2,7 @@ import React from 'react'
 
 const AddMember = () => {
     return (
-        <div>AddMember</div>
+        <div>AddNewMember</div>
     )
 }
 
