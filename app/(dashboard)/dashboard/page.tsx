@@ -16,7 +16,7 @@ const DashboardLandingPage = () => {
                             <p className="font-semibold text-zinc-900">
                                 Please finish setting up your profile!
                             </p>
-                            <p className="">
+                            <p className="text-sm">
                                 Let{"'"}s get you ready to make the best of your adminstration
                             </p>
                         </div>
