@@ -6,27 +6,13 @@ type Lecturer = {
     email: string
     phone: number
 }
-type ExecutiveMember = {
+type Member = {
     id: string
     firstname: string
     lastname: string
     role: string
     phone: number
-    level: number
-    email: string
-    membership: string
-    bio: string
-    linkedin: string
-    twitter: string
-    image: string
-}
-type LegislativeMember = {
-    id: string
-    firstname: string
-    lastname: string
-    role: string
-    phone: number
-    level: number
+    level: string
     email: string
     membership: string
     bio: string
@@ -63,14 +49,14 @@ export const lecturers: Lecturer[] = [
     // ...
 ]
   
-export const executiveMembers: ExecutiveMember[] = [
+export const executiveMembers: Member[] = [
     {
       id: "728ed52f",
       firstname: "Daniel",
       lastname: "Adetimehin",
       role: "President",
       phone: 9123343333,
-      level: 300,
+      level: "300L",
       email: "test@test.com",
     membership: "executive",
     bio: "Web Artisan and a Tech Enthusiast",
@@ -84,7 +70,7 @@ export const executiveMembers: ExecutiveMember[] = [
       lastname: "Nureni",
       role: "P.R.O",
       phone: 9123343333,
-      level: 100,
+      level: "100L",
       email: "test@test.com",
       membership: "executive",
       bio: "Web Artisan and a Tech Enthusiast",
@@ -98,7 +84,7 @@ export const executiveMembers: ExecutiveMember[] = [
       lastname: "Nureni",
       role: "P.R.O",
       phone: 9123343333,
-      level: 100,
+      level: "100L",
       email: "test@test.com",
       membership: "executive",
       bio: "Web Artisan and a Tech Enthusiast",
@@ -112,7 +98,7 @@ export const executiveMembers: ExecutiveMember[] = [
       lastname: "Nureni",
       role: "P.R.O",
       phone: 9123343333,
-      level: 100,
+      level: "100L",
       email: "test@test.com",
       membership: "executive",
       bio: "Web Artisan and a Tech Enthusiast",
@@ -126,7 +112,7 @@ export const executiveMembers: ExecutiveMember[] = [
       lastname: "Nureni",
       role: "P.R.O",
       phone: 9123343333,
-      level: 100,
+      level: "100L",
       email: "test@test.com",
       membership: "executive",
       bio: "Web Artisan and a Tech Enthusiast",
@@ -140,7 +126,7 @@ export const executiveMembers: ExecutiveMember[] = [
       lastname: "Nureni",
       role: "P.R.O",
       phone: 9123343333,
-      level: 100,
+      level: "100L",
       email: "test@test.com",
       membership: "executive",
       bio: "Web Artisan and a Tech Enthusiast",
@@ -154,7 +140,7 @@ export const executiveMembers: ExecutiveMember[] = [
       lastname: "Nureni",
       role: "P.R.O",
       phone: 9123343333,
-      level: 100,
+      level: "100L",
       email: "test@test.com",
       membership: "executive",
       bio: "Web Artisan and a Tech Enthusiast",
@@ -168,7 +154,7 @@ export const executiveMembers: ExecutiveMember[] = [
       lastname: "Nureni",
       role: "P.R.O",
       phone: 9123343333,
-      level: 100,
+      level: "100L",
       email: "test@test.com",
       membership: "executive",
       bio: "Web Artisan and a Tech Enthusiast",
@@ -182,7 +168,7 @@ export const executiveMembers: ExecutiveMember[] = [
       lastname: "Nureni",
       role: "P.R.O",
       phone: 9123343333,
-      level: 100,
+      level: "100L",
       email: "test@test.com",
       membership: "executive",
       bio: "Web Artisan and a Tech Enthusiast",
@@ -196,7 +182,7 @@ export const executiveMembers: ExecutiveMember[] = [
       lastname: "Nureni",
       role: "P.R.O",
       phone: 9123343333,
-      level: 100,
+      level: "100L",
       email: "test@test.com",
       membership: "executive",
       bio: "Web Artisan and a Tech Enthusiast",
@@ -207,14 +193,14 @@ export const executiveMembers: ExecutiveMember[] = [
     // ...
 ]
 
-export const legislativeMembers: LegislativeMember[] = [
+export const legislativeMembers: Member[] = [
   {
     id: "728ed52f",
     firstname: "Tope",
     lastname: "Sodeeq",
     role: "President",
     phone: 9123343333,
-    level: 300,
+    level: "300L",
     email: "test@test.com",
     membership: "executive",
     bio: "Web Artisan and a Tech Enthusiast",
@@ -228,7 +214,7 @@ export const legislativeMembers: LegislativeMember[] = [
     lastname: "Nureni",
     role: "P.R.O",
     phone: 9123343333,
-    level: 100,
+    level: "100L",
     email: "test@test.com",
     membership: "executive",
     bio: "Web Artisan and a Tech Enthusiast",
@@ -242,7 +228,7 @@ export const legislativeMembers: LegislativeMember[] = [
     lastname: "Nureni",
     role: "P.R.O",
     phone: 9123343333,
-    level: 100,
+    level: "100L",
     email: "test@test.com",
     membership: "executive",
     bio: "Web Artisan and a Tech Enthusiast",
@@ -256,7 +242,7 @@ export const legislativeMembers: LegislativeMember[] = [
     lastname: "Nureni",
     role: "P.R.O",
     phone: 9123343333,
-    level: 100,
+    level: "100L",
     email: "test@test.com",
     membership: "executive",
     bio: "Web Artisan and a Tech Enthusiast",
@@ -270,7 +256,7 @@ export const legislativeMembers: LegislativeMember[] = [
     lastname: "Nureni",
     role: "P.R.O",
     phone: 9123343333,
-    level: 100,
+    level: "100L",
     email: "test@test.com",
     membership: "executive",
     bio: "Web Artisan and a Tech Enthusiast",
@@ -284,7 +270,7 @@ export const legislativeMembers: LegislativeMember[] = [
     lastname: "Nureni",
     role: "P.R.O",
     phone: 9123343333,
-    level: 100,
+    level: "100L",
     email: "test@test.com",
     membership: "executive",
     bio: "Web Artisan and a Tech Enthusiast",
@@ -298,7 +284,7 @@ export const legislativeMembers: LegislativeMember[] = [
     lastname: "Nureni",
     role: "P.R.O",
     phone: 9123343333,
-    level: 100,
+    level: "100L",
     email: "test@test.com",
     membership: "executive",
     bio: "Web Artisan and a Tech Enthusiast",
@@ -312,7 +298,7 @@ export const legislativeMembers: LegislativeMember[] = [
     lastname: "Nureni",
     role: "P.R.O",
     phone: 9123343333,
-    level: 100,
+    level: "100L",
     email: "test@test.com",
     membership: "executive",
     bio: "Web Artisan and a Tech Enthusiast",
@@ -326,7 +312,7 @@ export const legislativeMembers: LegislativeMember[] = [
     lastname: "Nureni",
     role: "P.R.O",
     phone: 9123343333,
-    level: 100,
+    level: "100L",
     email: "test@test.com",
     membership: "executive",
     bio: "Web Artisan and a Tech Enthusiast",
@@ -340,7 +326,7 @@ export const legislativeMembers: LegislativeMember[] = [
     lastname: "Nureni",
     role: "P.R.O",
     phone: 9123343333,
-    level: 100,
+    level: "100L",
     email: "test@test.com",
     membership: "executive",
     bio: "Web Artisan and a Tech Enthusiast",
@@ -350,7 +336,6 @@ export const legislativeMembers: LegislativeMember[] = [
   },
   // ...
 ]
-
 
 export const posts: Post[] = [
     {
