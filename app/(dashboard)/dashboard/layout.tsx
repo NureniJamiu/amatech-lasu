@@ -25,18 +25,16 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
           <SideNav />
         </div>
 
-        {/* MOBILE MENU  */}
-
         <div className="relative flex-1 bg-gray-100 h-screen">
-          <div className="absolute px-3 py-12 top-0 left-0 w-full h-2/3 bg-green-700">
-            <div className="absolute top-6 left-10 w-8 h-8 shadow-2xl flex items-center justify-center bg-green-100 rounded lg:hidden">
+          <div className="absolute py-12 top-0 left-0 w-full h-2/3 lg:px-3 bg-green-700">
+            <div className="absolute top-6 left-5 w-8 h-8 shadow-2xl flex items-center justify-center bg-green-100 rounded lg:hidden">
               <DashboardMobileMenu />
             </div>
             {/* TOP NAVBAR  */}
-            <div className="flex justify-between items-center px-8 w-full mt-6 lg:mt-0">
-              <span className="text-gray-200 uppercase font-semibold">
+            <div className="flex justify-between items-center md:px-8 w-full mt-6 lg:mt-0 border-t border-neutral-300 pt-8 lg:pt-0">
+              <span className="text-gray-200 uppercase font-semibold px-3">
                 Welcome aboard, <br></br>
-                <span className="text-3xl font-bold">
+                <span className="text-2xl md:text-3xl font-bold">
                   comrade {user?.firstName}
                 </span>
               </span>
@@ -51,13 +49,13 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                     required
                   />
                 </form>
-                <div>
+                <div className="absolute top-7 right-5 lg:static">
                   <UserButton afterSignOutUrl="/" />
                 </div>
               </div>
             </div>
 
-            <div className="mt-20 bg-gray-100 h-[calc(100vh-173px)] rounded-t-3xl p-5 overflow-scroll">
+            <div className="mt-5 md:mt-20 bg-gray-100 h-[calc(100vh-173px)] rounded-t-xl md:rounded-t-3xl px-2 md:p-5 overflow-scroll">
               {children}
             </div>
           </div>
