@@ -88,7 +88,7 @@ const EditMember: React.FC<EditMemberProps> = ({ member }) => {
       linkedin: member.linkedin,
       twitter: member.twitter,
       bio: member.bio,
-      image: member.image
+      // image: member.image
     }
   })
 
