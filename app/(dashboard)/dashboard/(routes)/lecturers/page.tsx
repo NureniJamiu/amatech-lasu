@@ -11,7 +11,7 @@ const Lecturers = () => {
     return (
         <div className="">
             <div className='flex items-center justify-between'>
-                <p className='text-green-600 my-5 text-2xl font-semibold pl-2'>Lecturers</p>
+                <p className='text-green-600 my-5 text-xl md:text-2xl font-semibold pl-2'>Lecturers</p>
                 <Button className='btn-gradient rounded'>Add Lecturer</Button>
             </div>
             <DataTable columns={columns} data={lecturers} />
