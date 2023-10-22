@@ -98,16 +98,17 @@ const EditMember: React.FC<EditMemberProps> = ({ member }) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="">
 
-        <div className="flex justify-between gap-2">
+        <div className="grid grid-cols-2 gap-2">
           <FormField
             control={form.control}
             name="firstname"
             render={({ field }) => {
               return <FormItem>
+                <FormLabel>First name</FormLabel>
                 <FormControl>
-                  <Input className="rounded" placeholder="firstname" {...field} />
+                  <Input className="rounded" placeholder="e.g: John" {...field} />
                 </FormControl>
                 <FormMessage className="text-red-600" />
               </FormItem>
@@ -118,8 +119,9 @@ const EditMember: React.FC<EditMemberProps> = ({ member }) => {
             name="lastname"
             render={({ field }) => (
               <FormItem>
+                <FormLabel>Surname</FormLabel>
                 <FormControl>
-                  <Input className="rounded" placeholder="surname" {...field} />
+                  <Input className="rounded" placeholder="e.g: Doe" {...field} />
                 </FormControl>
                 <FormMessage className="text-red-600" />
               </FormItem>
@@ -130,10 +132,11 @@ const EditMember: React.FC<EditMemberProps> = ({ member }) => {
             name="membership"
             render={({ field }) => (
               <FormItem>
+                <FormLabel>Membership</FormLabel>
                 <FormControl>
                   <Select {...field}>
-                    <SelectTrigger className="w-[80px] rounded">
-                      <SelectValue placeholder="-Member-" />
+                    <SelectTrigger className="rounded">
+                      <SelectValue placeholder="--Membership--" />
                     </SelectTrigger>
                     <SelectContent className="bg-white"
                     >
@@ -149,16 +152,14 @@ const EditMember: React.FC<EditMemberProps> = ({ member }) => {
               </FormItem>
             )}
           />
-        </div>
-
-        <div className="flex justify-between gap-2">
           <FormField
             control={form.control}
             name="email"
             render={({ field }) => (
               <FormItem>
+                <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input className="rounded" placeholder="email" {...field} />
+                  <Input className="rounded" placeholder="e.g: example@gmail.com" {...field} />
                 </FormControl>
                 <FormMessage className="text-red-600" />
               </FormItem>
@@ -169,10 +170,11 @@ const EditMember: React.FC<EditMemberProps> = ({ member }) => {
             name="level"
             render={({ field }) => (
               <FormItem>
+                <FormLabel>Level</FormLabel>
                 <FormControl>
                   <Select {...field}>
-                    <SelectTrigger className="w-[80px] rounded">
-                      <SelectValue placeholder="-Level-" />
+                    <SelectTrigger className="rounded">
+                      <SelectValue placeholder="--Level--" />
                     </SelectTrigger>
                     <SelectContent className="bg-white"
                     >
@@ -196,25 +198,24 @@ const EditMember: React.FC<EditMemberProps> = ({ member }) => {
             name="phone"
             render={({ field }) => (
               <FormItem>
+                <FormLabel>Phone number</FormLabel>
                 <FormControl>
-                  <Input className="rounded" placeholder="phone" {...field} />
+                  <Input className="rounded" placeholder="e.g: 08012345678" {...field} />
                 </FormControl>
                 <FormMessage className="text-red-600" />
               </FormItem>
             )}
           />
-        </div>
-
-        <div className="flex justify-between gap-2">
           <FormField
             control={form.control}
             name="role"
             render={({ field }) => (
               <FormItem>
+                <FormLabel>Role</FormLabel>
                 <FormControl>
                   <Select {...field}>
-                    <SelectTrigger className="w-[80px] rounded">
-                      <SelectValue placeholder="-Role-" />
+                    <SelectTrigger className="rounded">
+                      <SelectValue placeholder="--Role--" />
                     </SelectTrigger>
                     <SelectContent className="bg-white"
                     >
@@ -243,8 +244,9 @@ const EditMember: React.FC<EditMemberProps> = ({ member }) => {
             name="linkedin"
             render={({ field }) => {
               return <FormItem>
+                <FormLabel>Linkedin</FormLabel>
                 <FormControl>
-                  <Input className="rounded" placeholder="linkedin url" {...field} />
+                  <Input className="rounded" placeholder="e.g: https://linkedin/in/..." {...field} />
                 </FormControl>
                 <FormMessage className="text-red-600" />
               </FormItem>
@@ -255,44 +257,45 @@ const EditMember: React.FC<EditMemberProps> = ({ member }) => {
             name="twitter"
             render={({ field }) => (
               <FormItem>
+                <FormLabel>Twitter</FormLabel>
                 <FormControl>
-                  <Input className="rounded" placeholder="twitter url" {...field} />
+                  <Input className="rounded" placeholder="e.g: https://twitter/..." {...field} />
                 </FormControl>
                 <FormMessage className="text-red-600" />
               </FormItem>
             )}
           />
-
-        </div>
-
-        <div className="flex justify-between gap-2">
           <FormField
             control={form.control}
             name="bio"
             render={({ field }) => (
               <FormItem>
+                <FormLabel>Bio</FormLabel>
                 <FormControl>
-                  <Input className="rounded" placeholder="short bio" {...field} />
+                  <Input className="rounded" placeholder="e.g: Software Engineer with a passion for..." {...field} />
                 </FormControl>
                 <FormMessage className="text-red-600" />
               </FormItem>
             )}
           />
-          <FormField
-            control={form.control}
-            name="image"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input className="rounded" type="file" {...field} />
-                </FormControl>
-                <FormMessage className="text-red-600" />
-              </FormItem>
-            )}
-          />
+          <div className="col-span-2">
+            <FormField
+              control={form.control}
+              name="image"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Upload image</FormLabel>
+                  <FormControl>
+                    <Input className="rounded" type="file" {...field} />
+                  </FormControl>
+                  <FormMessage className="text-red-600" />
+                </FormItem>
+              )}
+            />
+          </div>
         </div>
 
-        <Button type="submit" className="btn-gradient rounded w-full">Submit</Button>
+        <Button type="submit" className="btn-gradient rounded w-full mt-2">Submit</Button>
       </form>
       <Toaster />
     </Form>

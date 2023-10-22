@@ -4,6 +4,17 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Edit, Home, LogOut, Newspaper, Presentation, Users } from 'lucide-react';
 
+
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
+import AddLecturer from './AddLecturer';
+
 const data = [
     {
         name: "Home",
@@ -61,12 +72,28 @@ const SideNav = () => {
                 })}
             </div>
             <div className="flex flex-col gap-2 mx-2">
-                <div
-                    className=" flex items-center justify-center gap-3 rounded text-gray-100 p-3 bg-green-600 border-2 border-green-700 font-semibold cursor-pointer"
-                >
-                    <Edit />
-                    Create Post
-                </div>
+                <Dialog>
+                    <DialogTrigger className="w-full">
+                        <div
+                            className=" flex items-center justify-center gap-3 rounded text-gray-100 p-3 bg-green-600 border-2 border-green-700 font-semibold cursor-pointer"
+                        >
+                            <Edit />
+                            Create Post
+                        </div>
+                    </DialogTrigger>
+
+                    <DialogContent className="bg-white rounded-xl">
+                        <DialogHeader>
+                            <DialogTitle>Add Lecturer</DialogTitle>
+                            <DialogDescription>
+                                Click the submit button when done.
+                            </DialogDescription>
+                        </DialogHeader>
+
+                        <AddLecturer />
+                    </DialogContent>
+                </Dialog>
+
                 <div
                     className="flex items-center justify-center gap-3 rounded mb-2 bg-gray-400 p-3 border-2 border-gray-500 font-semibold cursor-pointer"
                 //   onClick={handleLogout}

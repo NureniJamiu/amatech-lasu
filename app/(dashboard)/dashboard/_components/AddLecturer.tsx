@@ -76,7 +76,7 @@ const AddLecturer = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="">
 
         <div className="flex justify-between gap-2">
           <FormField
@@ -134,12 +134,12 @@ const AddLecturer = () => {
             )}
           />
         </div>
-        <div className="flex justify-between gap-2">
+        <div className="flex gap-2">
           <FormField
             control={form.control}
             name="email"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="w-full">
                 <FormLabel>Email</FormLabel>
                 <FormControl>
                   <Input className="rounded" placeholder="e.g: example@gmail.com" {...field} />
@@ -152,7 +152,7 @@ const AddLecturer = () => {
             control={form.control}
             name="phone"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="w-full">
                 <FormLabel>Phone number</FormLabel>
                 <FormControl>
                   <Input className="rounded" placeholder="e.g: 09018729178" {...field} />
@@ -190,7 +190,7 @@ const AddLecturer = () => {
           </div>
         </FormItem>
 
-        <Button type="submit" className="btn-gradient rounded w-full">Submit</Button>
+        <Button type="submit" className="btn-gradient rounded w-full mt-2">Submit</Button>
       </form>
       <Toaster />
     </Form>
