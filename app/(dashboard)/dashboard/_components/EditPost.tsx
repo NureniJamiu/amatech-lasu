@@ -32,16 +32,15 @@ import toast, { Toaster } from "react-hot-toast"
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-// interface AddLecturerProps {
-//   lecturer: {
-//     id: string,
-//     title: string,
-//     firstname: string,
-//     lastname: string,
-//     email: string,
-//     phone: number
-//   };
-// }
+interface EditPostProps {
+  post: {
+    id: string,
+    title: string,
+    content: string,
+    image: string,
+    category: string,
+  };
+}
 
 const FormSchema = z.object({
   title: z.string().min(2, {
@@ -57,11 +56,17 @@ const FormSchema = z.object({
 })
 
 
-const AddPost = () => {
+const EditPost: React.FC<EditPostProps> = ({ post }) => {
   const [content, setContent] = useState('')
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
+    defaultValues: {
+      title: post.title,
+      category: post.category,
+      content: post.content,
+      // image: post.image 
+    }
   })
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
@@ -101,11 +106,11 @@ const AddPost = () => {
                     >
                       <SelectGroup >
                         <SelectLabel>Category</SelectLabel>
-                        <SelectItem value="mr.">General</SelectItem>
-                        <SelectItem value="mrs.">Social</SelectItem>
-                        <SelectItem value="miss.">Finance</SelectItem>
-                        <SelectItem value="dr.">Sports</SelectItem>
-                        <SelectItem value="prof.">Welfare</SelectItem>
+                        <SelectItem value="general">General</SelectItem>
+                        <SelectItem value="social">Social</SelectItem>
+                        <SelectItem value="finance">Finance</SelectItem>
+                        <SelectItem value="sports">Sports</SelectItem>
+                        <SelectItem value="welfare">Welfare</SelectItem>
                       </SelectGroup>
                     </SelectContent>
                   </Select>
@@ -152,4 +157,4 @@ const AddPost = () => {
   )
 }
 
-export default AddPost
+export default EditPost

@@ -13,7 +13,7 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
-import AddLecturer from './AddLecturer';
+import AddPost from './AddPost';
 
 const data = [
     {
@@ -84,13 +84,13 @@ const SideNav = () => {
 
                     <DialogContent className="bg-white rounded-xl">
                         <DialogHeader>
-                            <DialogTitle>Add Lecturer</DialogTitle>
+                            <DialogTitle>Add Post</DialogTitle>
                             <DialogDescription>
                                 Click the submit button when done.
                             </DialogDescription>
                         </DialogHeader>
 
-                        <AddLecturer />
+                        <AddPost />
                     </DialogContent>
                 </Dialog>
 

@@ -7,6 +7,8 @@ import { UserButton, useUser } from "@clerk/nextjs";
 
 import SideNav from "./_components/SideNav";
 import DashboardMobileMenu from "./_components/DashboardMobileMenu";
+
+
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 
   const { user } = useUser();

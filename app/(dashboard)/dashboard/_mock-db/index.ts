@@ -26,7 +26,7 @@ type Post = {
     title: string
     category: string
     content: string
-    image?: string
+    image: string
 }
 
 export const lecturers: Lecturer[] = [
@@ -341,16 +341,16 @@ export const posts: Post[] = [
     {
       id: "728ed52f",
       title: "Why Project Managers should prioritize productivity",
-      category: "General",
+      category: "general",
       content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime sit veniam excepturi aspernatur! Maiores est ratione voluptatem, itaque porro vel reprehenderit odio amet sed numquam. Enim pariatur nulla commodi tempore?",
-      image: "",
+      image: "https://cloudinary...",
     },
     {
       id: "72wjg52f",
       title: "Amatech set to have her Lunch and Awards Day event",
-      category: "Social",
+      category: "social",
       content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime sit veniam excepturi aspernatur! Maiores est ratione voluptatem, itaque porro vel reprehenderit odio amet sed numquam. Enim pariatur nulla commodi tempore?",
-      image: "",
+      image: "https://cloudinary...",
     },
     // ...
 ]

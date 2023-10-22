@@ -46,17 +46,16 @@ const Members = () => {
 
             <Tabs defaultValue="account" className="">
                 <TabsList className='space-x-2 w-full'>
-                    <TabsTrigger value="account" className={`${tabStyle}`}>Executive Members</TabsTrigger>
-                    <TabsTrigger value="password" className={`${tabStyle}`}>Legislative Members</TabsTrigger>
+                    <TabsTrigger value="executive" className={`${tabStyle}`}>Executive Members</TabsTrigger>
+                    <TabsTrigger value="legislative" className={`${tabStyle}`}>Legislative Members</TabsTrigger>
                 </TabsList>
-                <TabsContent value="account">
+                <TabsContent value="executive">
                     <DataTable columns={columns} data={executiveMembers} />
                 </TabsContent>
-                <TabsContent value="password">
+                <TabsContent value="legislative">
                     <DataTable columns={columns} data={legislativeMembers} />
                 </TabsContent>
             </Tabs>
-
         </div>
     )
 }

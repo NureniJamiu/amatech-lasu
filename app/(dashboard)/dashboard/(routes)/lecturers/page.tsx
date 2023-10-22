@@ -41,10 +41,7 @@ const Lecturers = () => {
                 </div>
             </div>
 
-
-
             <DataTable columns={columns} data={lecturers} />
-
         </div>
     )
 }
