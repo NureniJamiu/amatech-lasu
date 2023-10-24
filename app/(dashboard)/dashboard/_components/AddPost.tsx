@@ -39,17 +39,6 @@ import axios from "axios";
 import { useUser } from "@clerk/nextjs"
 import { generateImageUrl } from "@/helpers"
 
-// interface AddLecturerProps {
-//   lecturer: {
-//     id: string,
-//     title: string,
-//     firstname: string,
-//     lastname: string,
-//     email: string,
-//     phone: number
-//   };
-// }
-
 const MAX_FILE_SIZE = 1024 * 1024 * 5;
 const ACCEPTED_IMAGE_MIME_TYPES = [
   "image/jpeg",

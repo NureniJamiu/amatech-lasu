@@ -28,10 +28,18 @@ import {
 
 import { Input } from "@/components/ui/input"
 import toast, { Toaster } from "react-hot-toast"
+import { generateImageUrl } from "@/helpers"
+import axios from "axios"
+import { useUser } from "@clerk/nextjs"
+import { Paperclip } from "lucide-react"
 
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-
+const MAX_FILE_SIZE = 1024 * 1024 * 5;
+const ACCEPTED_IMAGE_MIME_TYPES = [
+  "image/jpeg",
+  "image/jpg",
+  "image/png",
+  "image/webp",
+];
 
 const FormSchema = z.object({
   firstname: z.string().min(2, {
@@ -43,13 +51,19 @@ const FormSchema = z.object({
   bio: z.string().min(10, {
     message: "Bio must be at least 2 characters.",
   }),
-  image: z.string({
-    required_error: "Please choose an image",
-  }),
+  image: z
+    .any()
+    .refine((files) => {
+      return files?.[0]?.size <= MAX_FILE_SIZE;
+    }, `Max image size is 5MB.`)
+    .refine(
+      (files) => ACCEPTED_IMAGE_MIME_TYPES.includes(files?.[0]?.type),
+      "Only .jpg, .jpeg, .png and .webp formats are supported."
+    ),
   email: z.string({
-    required_error: "Please imput an email",
+    required_error: "Please input an email",
   }).email(),
-  phone: z.number().min(11, {
+  phone: z.coerce.number().min(11, {
     message: "Phone number must be at least characters.",
   }),
   membership: z.string(),
@@ -57,18 +71,52 @@ const FormSchema = z.object({
   role: z.string(),
   linkedin: z.string().url(),
   twitter: z.string().url(),
+  createdBy: z.string(),
 })
 
 
 const AddMember = () => {
-  const [content, setContent] = useState('')
+
+  const { user } = useUser();
+
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
+    defaultValues: {
+      image: undefined,
+    },
   })
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast.success(JSON.stringify(data, null, 2))
+  async function onSubmit(formSchemaData: z.infer<typeof FormSchema>) {
+    setIsSubmitting(true)
+    try {
+      let imageFile = await generateImageUrl(formSchemaData.image[0])
+      toast.success("Image generated...")
+      const values = {
+        ...formSchemaData,
+        image: imageFile,
+        createdBy: user?.fullName
+      }
+
+      console.log(values)
+
+      // const { data } = await axios.post("/api/lecturer/create", values)
+
+      // if (data.status !== 201) {
+      //   toast.error(data.message)
+      //   setIsSubmitting(false)
+      // } else {
+      //   toast.success(data.message)
+      //   setIsSubmitting(false)
+      // }
+    }
+    catch (err) {
+      // console.log(err)
+      setIsSubmitting(false)
+      toast.error("something went wrong")
+    }
   }
 
   return (
@@ -109,7 +157,7 @@ const AddMember = () => {
               <FormItem>
                 <FormLabel>Membership</FormLabel>
                 <FormControl>
-                  <Select {...field}>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <SelectTrigger className="rounded">
                       <SelectValue placeholder="--Membership--" />
                     </SelectTrigger>
@@ -147,7 +195,7 @@ const AddMember = () => {
               <FormItem>
                 <FormLabel>Level</FormLabel>
                 <FormControl>
-                  <Select {...field}>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <SelectTrigger className="rounded">
                       <SelectValue placeholder="--Level--" />
                     </SelectTrigger>
@@ -175,7 +223,7 @@ const AddMember = () => {
               <FormItem>
                 <FormLabel>Phone</FormLabel>
                 <FormControl>
-                  <Input className="rounded" placeholder="e.g: 08012345678" {...field} />
+                  <Input className="rounded" type="number" placeholder="e.g: 08012345678" {...field} />
                 </FormControl>
                 <FormMessage className="text-red-600" />
               </FormItem>
@@ -188,7 +236,7 @@ const AddMember = () => {
               <FormItem>
                 <FormLabel>Role</FormLabel>
                 <FormControl>
-                  <Select {...field}>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <SelectTrigger className="rounded">
                       <SelectValue placeholder="--Role--" />
                     </SelectTrigger>
@@ -261,7 +309,30 @@ const AddMember = () => {
                 <FormItem>
                   <FormLabel>Upload image</FormLabel>
                   <FormControl>
-                    <Input className="rounded" type="file" {...field} />
+                    <Button size="lg" type="button">
+                      <Input
+                        type="file"
+                        className="hidden"
+                        id="fileInput"
+                        onBlur={field.onBlur}
+                        name={field.name}
+                        disabled={isSubmitting}
+                        onChange={(e) => {
+                          field.onChange(e.target.files);
+                          setSelectedImage(e.target.files?.[0] || null);
+                        }}
+                        ref={field.ref}
+                      />
+                      <label
+                        htmlFor="fileInput"
+                        className="bg-blue-500 hover:bg-blue-600 text-neutral-90  rounded-md cursor-pointer inline-flex items-center"
+                      >
+                        <Paperclip />
+                        <span className="whitespace-nowrap">
+                          choose your image
+                        </span>
+                      </label>
+                    </Button>
                   </FormControl>
                   <FormMessage className="text-red-600" />
                 </FormItem>
