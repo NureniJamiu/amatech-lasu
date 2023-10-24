@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { useState } from "react"
+// import { useState } from "react"
 
 import * as z from "zod"
 
@@ -31,6 +31,13 @@ import toast, { Toaster } from "react-hot-toast"
 
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { useState } from "react"
+import Image from "next/image"
+import { Image as ImageIcon, Paperclip } from "lucide-react"
+
+import axios from "axios";
+import { useUser } from "@clerk/nextjs"
+import { generateImageUrl } from "@/helpers"
 
 // interface AddLecturerProps {
 //   lecturer: {
@@ -43,29 +50,76 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 //   };
 // }
 
+const MAX_FILE_SIZE = 1024 * 1024 * 5;
+const ACCEPTED_IMAGE_MIME_TYPES = [
+  "image/jpeg",
+  "image/jpg",
+  "image/png",
+  "image/webp",
+];
+const ACCEPTED_IMAGE_TYPES = ["jpeg", "jpg", "png", "webp"];
+
 const FormSchema = z.object({
   title: z.string().min(2, {
     message: "First name must be at least 2 characters.",
   }),
   category: z.string(),
-  content: z.string().min(150, {
-    message: "Post content must be at least 2 characters.",
-  }),
-  image: z.string({
-    required_error: "Please choose an image",
-  }),
+  image: z
+    .any()
+    .refine((files) => {
+      return files?.[0]?.size <= MAX_FILE_SIZE;
+    }, `Max image size is 5MB.`)
+    .refine(
+      (files) => ACCEPTED_IMAGE_MIME_TYPES.includes(files?.[0]?.type),
+      "Only .jpg, .jpeg, .png and .webp formats are supported."
+    ),
 })
 
 
 const AddPost = () => {
+
+  const { user } = useUser();
+
+
   const [content, setContent] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
+    defaultValues: {
+      image: undefined,
+    },
   })
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast.success(JSON.stringify(data, null, 2))
+  async function onSubmit(formSchemaData: z.infer<typeof FormSchema>) {
+    setIsSubmitting(true)
+    try {
+
+      let imageFile = await generateImageUrl(formSchemaData.image[0])
+      const values = {
+        ...formSchemaData,
+        image: imageFile,
+        content,
+        author: user?.fullName
+      }
+
+      const { data } = await axios.post("/api/posts/create", values)
+
+      if (data.status !== 201) {
+        toast.error(data.message)
+        setIsSubmitting(false)
+      } else {
+        toast.success(data.message)
+        setIsSubmitting(false)
+      }
+    }
+    catch (err) {
+      console.log(err)
+      setIsSubmitting(false)
+      toast.error("something went wrong")
+    }
   }
 
   return (
@@ -80,7 +134,10 @@ const AddPost = () => {
               return <FormItem>
                 <FormLabel>Post Title</FormLabel>
                 <FormControl>
-                  <Input className="rounded" placeholder="e.g: Why Project Managers should prioritize collaboration..." {...field} />
+                  <Input
+                    className="rounded"
+                    disabled={isSubmitting}
+                    placeholder="e.g: Why Project Managers should prioritize collaboration..." {...field} />
                 </FormControl>
                 <FormMessage className="text-red-600" />
               </FormItem>
@@ -93,7 +150,7 @@ const AddPost = () => {
               <FormItem>
                 <FormLabel>Category</FormLabel>
                 <FormControl>
-                  <Select {...field}>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <SelectTrigger className="rounded">
                       <SelectValue placeholder="-Select Category-" />
                     </SelectTrigger>
@@ -101,11 +158,11 @@ const AddPost = () => {
                     >
                       <SelectGroup >
                         <SelectLabel>Category</SelectLabel>
-                        <SelectItem value="mr.">General</SelectItem>
-                        <SelectItem value="mrs.">Social</SelectItem>
-                        <SelectItem value="miss.">Finance</SelectItem>
-                        <SelectItem value="dr.">Sports</SelectItem>
-                        <SelectItem value="prof.">Welfare</SelectItem>
+                        <SelectItem value="general">General</SelectItem>
+                        <SelectItem value="social">Social</SelectItem>
+                        <SelectItem value="finance">Finance</SelectItem>
+                        <SelectItem value="sports">Sports</SelectItem>
+                        <SelectItem value="welfare">Welfare</SelectItem>
                       </SelectGroup>
                     </SelectContent>
                   </Select>
@@ -114,7 +171,7 @@ const AddPost = () => {
               </FormItem>
             )}
           />
-          <div className="col-span-2">
+          <div className="">
             <FormField
               control={form.control}
               name="image"
@@ -122,13 +179,53 @@ const AddPost = () => {
                 <FormItem>
                   <FormLabel>Upload image</FormLabel>
                   <FormControl>
-                    <Input className="rounded" type="file" {...field} />
+                    <Button size="lg" type="button">
+                      <Input
+                        type="file"
+                        className="hidden"
+                        id="fileInput"
+                        onBlur={field.onBlur}
+                        name={field.name}
+                        disabled={isSubmitting}
+                        onChange={(e) => {
+                          field.onChange(e.target.files);
+                          setSelectedImage(e.target.files?.[0] || null);
+                        }}
+                        ref={field.ref}
+                      />
+                      <label
+                        htmlFor="fileInput"
+                        className="bg-blue-500 hover:bg-blue-600 text-neutral-90  rounded-md cursor-pointer inline-flex items-center"
+                      >
+                        <Paperclip />
+                        <span className="whitespace-nowrap">
+                          choose your image
+                        </span>
+                      </label>
+                    </Button>
                   </FormControl>
                   <FormMessage className="text-red-600" />
                 </FormItem>
               )}
             />
           </div>
+          {selectedImage ? (
+            <div className="">
+              <Image
+                src={URL.createObjectURL(selectedImage)}
+                alt="Selected"
+                width={150}
+                height={150}
+              />
+            </div>
+          ) : (
+            <div className="inline-flex items-center justify-between">
+              <div className="p-3 bg-slate-200  justify-center items-center flex">
+                <ImageIcon size={56} />
+              </div>
+
+            </div>
+          )}
         </div>
 
         <FormItem>
@@ -136,6 +233,7 @@ const AddPost = () => {
           <div className="flex justify-between gap-2 border border-zinc-800 rounded">
             <CKEditor
               editor={ClassicEditor}
+              disabled={isSubmitting}
               data={content}
               onChange={(event, editor) => {
                 const content = editor.getData();
@@ -145,7 +243,7 @@ const AddPost = () => {
           </div>
         </FormItem>
 
-        <Button type="submit" className="btn-gradient rounded w-full mt-2">Submit</Button>
+        <Button type="submit" className="btn-gradient rounded w-full mt-2" disabled={isSubmitting}>Submit</Button>
       </form>
       <Toaster />
     </Form>

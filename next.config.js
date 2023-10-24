@@ -1,8 +1,5 @@
 /** @type {import('next').NextConfig} */
 
-const { parsed: localEnv } = require("dotenv").config();
-const nextConfig = {
-  env: localEnv,
-};
+const nextConfig = {};
 
 module.exports = nextConfig;
