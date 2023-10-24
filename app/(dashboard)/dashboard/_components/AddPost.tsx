@@ -116,7 +116,7 @@ const AddPost = () => {
       }
     }
     catch (err) {
-      console.log(err)
+      // console.log(err)
       setIsSubmitting(false)
       toast.error("something went wrong")
     }

@@ -11,6 +11,7 @@ import Blog from "@/models/postModel";
 connect();
 
 export async function POST(req: NextRequest) {
+  console.log("REQUEST", req)
     try {
         const {userId}= auth()
         // const { title, slug, category, content } = request;
