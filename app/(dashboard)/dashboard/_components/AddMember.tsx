@@ -312,7 +312,6 @@ const AddMember = () => {
                     <Button size="lg" type="button">
                       <Input
                         type="file"
-                        className="hidden"
                         id="fileInput"
                         onBlur={field.onBlur}
                         name={field.name}
@@ -323,15 +322,6 @@ const AddMember = () => {
                         }}
                         ref={field.ref}
                       />
-                      <label
-                        htmlFor="fileInput"
-                        className="bg-blue-500 hover:bg-blue-600 text-neutral-90  rounded-md cursor-pointer inline-flex items-center"
-                      >
-                        <Paperclip />
-                        <span className="whitespace-nowrap">
-                          choose your image
-                        </span>
-                      </label>
                     </Button>
                   </FormControl>
                   <FormMessage className="text-red-600" />
