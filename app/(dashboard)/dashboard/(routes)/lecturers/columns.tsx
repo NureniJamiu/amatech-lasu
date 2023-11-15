@@ -21,6 +21,7 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 import EditLecturer from "../../_components/EditLecturer"
+import Image from "next/image"
 
 type Lecturer = {
     id: string
@@ -29,6 +30,7 @@ type Lecturer = {
     lastname: string
     email: string
     phone: number
+    image: string
 }
 
 const iconStyle = `text-sm flex items-center gap-2 w-full p-1 rounded cursor-pointer`
@@ -37,6 +39,10 @@ export const columns: ColumnDef<Lecturer>[] = [
     {
         accessorKey: "image",
         header: "Image",
+        cell: ({ row }) => {
+            const { original } = row
+            return <Image src={original.image} alt="post image" width={30} height={30} className="rounded-full" />
+        }
     },
     {
         accessorKey: "title",

@@ -3,16 +3,16 @@ import mongoose from "mongoose";
 import { connect } from "@/db";
 import { NextRequest, NextResponse } from "next/server";
 
-import Lecturer from "@/models/lecturerModel";
+import LegislativeMember from "@/models/legislativeMemberModel";
 
 connect();
 
 export async function GET(req: NextRequest) {
     try {
-        const lecturers = await Lecturer.find().sort({ createdAt: -1 });
+        const legislatives = await LegislativeMember.find().sort({ createdAt: -1 });
 
         return NextResponse.json({
-            lecturers,
+            legislatives,
             status: 200,
         });
       } catch (error) {

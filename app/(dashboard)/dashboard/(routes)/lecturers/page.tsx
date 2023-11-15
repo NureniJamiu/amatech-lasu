@@ -1,8 +1,10 @@
-import React from 'react'
+"use client"
+
+import React, { useEffect, useState } from 'react'
 
 import { columns } from "../lecturers/columns"
 import { DataTable } from "./data-table"
-import { lecturers } from '../../_mock-db'
+// import { lecturers } from '../../_mock-db'
 import { Button } from '@/components/ui/button'
 
 import {
@@ -14,9 +16,25 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 import AddLecturer from '../../_components/AddLecturer'
+import axios from 'axios'
 
 
 const Lecturers = () => {
+    const [lecturers, setLecturers] = useState([])
+
+    useEffect(() => {
+        async function fetchData() {
+            const response = await axios.get("/api/lecturer");
+            console.log(response)
+            if (response?.data?.status === 200) {
+                setLecturers(response?.data?.lecturers);
+            } else {
+                setLecturers([])
+            }
+        }
+        fetchData();
+    }, [lecturers]);
+
     return (
         <div className="">
             <div className='flex items-center justify-between'>
