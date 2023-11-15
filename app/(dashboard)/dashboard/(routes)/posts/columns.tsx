@@ -41,7 +41,7 @@ export const columns: ColumnDef<Post>[] = [
         header: "Image",
         cell: ({ row }) => {
             const { original } = row
-            return <Image src={original.image} alt="post image" width={30} height={30} className="rounded-full" />
+            return <Image src={original.image} alt="post image" width={30} height={30} className="rounded-full shadow" />
         }
     },
     {

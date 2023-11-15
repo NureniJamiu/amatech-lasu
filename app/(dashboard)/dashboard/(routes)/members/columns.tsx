@@ -21,6 +21,7 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 import EditMember from "../../_components/EditMember"
+import Image from "next/image"
 
 type Member = {
     id: string
@@ -43,6 +44,10 @@ export const columns: ColumnDef<Member>[] = [
     {
         accessorKey: "image",
         header: "Image",
+        cell: ({ row }) => {
+            const { original } = row
+            return <Image src={original.image} alt="post image" width={30} height={30} className="rounded-full shadow" />
+        }
     },
     {
         accessorKey: "firstname",
