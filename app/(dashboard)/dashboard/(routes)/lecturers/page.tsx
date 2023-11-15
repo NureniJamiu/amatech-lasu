@@ -25,7 +25,6 @@ const Lecturers = () => {
     useEffect(() => {
         async function fetchData() {
             const response = await axios.get("/api/lecturer");
-            console.log(response)
             if (response?.data?.status === 200) {
                 setLecturers(response?.data?.lecturers);
             } else {
