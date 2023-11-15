@@ -21,7 +21,7 @@ const Posts = () => {
     useEffect(() => {
         async function fetchData() {
             const response = await axios.get("/api/posts");
-            console.log(response)
+            // console.log(response)
             if (response?.data?.status === 200) {
                 setPosts(response?.data?.posts);
             } else {

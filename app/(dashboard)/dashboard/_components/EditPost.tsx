@@ -31,10 +31,15 @@ import toast, { Toaster } from "react-hot-toast"
 
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { generateImageUrl } from "@/helpers"
+import axios from "axios"
+import { useUser } from "@clerk/nextjs"
+import Image from "next/image"
+import { Paperclip } from "lucide-react"
 
 interface EditPostProps {
   post: {
-    id: string,
+    _id: string,
     title: string,
     content: string,
     image: string,
@@ -42,35 +47,84 @@ interface EditPostProps {
   };
 }
 
+const MAX_FILE_SIZE = 1024 * 1024 * 5;
+const ACCEPTED_IMAGE_MIME_TYPES = [
+  "image/jpeg",
+  "image/jpg",
+  "image/png",
+  "image/webp",
+];
+const ACCEPTED_IMAGE_TYPES = ["jpeg", "jpg", "png", "webp"];
+
 const FormSchema = z.object({
   title: z.string().min(2, {
     message: "First name must be at least 2 characters.",
   }),
   category: z.string(),
-  content: z.string().min(150, {
-    message: "Post content must be at least 2 characters.",
-  }),
-  image: z.string({
-    required_error: "Please choose an image",
-  }),
+  image: z
+    .any()
+    .nullable()
+    .refine((files) => files === undefined || files?.[0]?.size <= MAX_FILE_SIZE
+    )
+    .refine(
+      (files) => files === undefined || ACCEPTED_IMAGE_MIME_TYPES.includes(files?.[0]?.type),
+      "Only .jpg, .jpeg, .png and .webp formats are supported."
+    ),
 })
 
 
 const EditPost: React.FC<EditPostProps> = ({ post }) => {
-  const [content, setContent] = useState('')
+
+  const { user } = useUser();
+
+  const [content, setContent] = useState(post.content)
+  const [prevImage, setPrevImage] = useState(post.image || "")
+  const [newImage, setNewImage] = useState<File | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
 
   const form = useForm<z.infer<typeof FormSchema>>({
+
     resolver: zodResolver(FormSchema),
     defaultValues: {
       title: post.title,
       category: post.category,
-      content: post.content,
-      // image: post.image 
+      image: undefined
     }
   })
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast.success(JSON.stringify(data, null, 2))
+  async function onSubmit(formSchemaData: z.infer<typeof FormSchema>) {
+    setIsSubmitting(true)
+    try {
+      let imageFile
+
+      if (newImage) {
+        imageFile = await generateImageUrl(formSchemaData.image[0])
+      } else {
+        imageFile = prevImage
+      }
+
+      const values = {
+        ...formSchemaData,
+        image: imageFile,
+        content,
+        author: user?.fullName
+      }
+
+      const { data } = await axios.patch(`/api/posts/edit/${post?._id}`, values)
+
+      if (data.status !== 200) {
+        toast.error(data.message)
+      } else {
+        toast.success(data.message)
+      }
+      setIsSubmitting(false)
+    }
+    catch (err) {
+      // console.log(err)
+      setIsSubmitting(false)
+      toast.error("something went wrong")
+    }
   }
 
   return (
@@ -98,7 +152,7 @@ const EditPost: React.FC<EditPostProps> = ({ post }) => {
               <FormItem>
                 <FormLabel>Category</FormLabel>
                 <FormControl>
-                  <Select {...field}>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <SelectTrigger className="rounded">
                       <SelectValue placeholder="-Select Category-" />
                     </SelectTrigger>
@@ -119,21 +173,45 @@ const EditPost: React.FC<EditPostProps> = ({ post }) => {
               </FormItem>
             )}
           />
-          <div className="col-span-2">
-            <FormField
-              control={form.control}
-              name="image"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Upload image</FormLabel>
-                  <FormControl>
-                    <Input className="rounded" type="file" {...field} />
-                  </FormControl>
-                  <FormMessage className="text-red-600" />
-                </FormItem>
-              )}
-            />
-          </div>
+          <Image src={!newImage ? prevImage : URL.createObjectURL(newImage)} width={50} height={50} alt="post image" />
+
+          <FormField
+            control={form.control}
+            name="image"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Button size="lg" type="button">
+                    <Input
+                      type="file"
+                      className="hidden"
+                      id="fileInput"
+                      onBlur={field.onBlur}
+                      name={field.name}
+                      disabled={isSubmitting}
+                      onChange={(e) => {
+                        field.onChange(e.target.files);
+                        setNewImage(e.target.files?.[0] || null);
+                      }}
+                      ref={field.ref}
+                    />
+                    <div className="col-span-2">
+                      <label
+                        htmlFor="fileInput"
+                        className="bg-green-400 hover:bg-green-500 text-neutral-90 px-2 rounded-md cursor-pointer flex items-center"
+                      >
+                        <Paperclip />
+                        <span className="whitespace-nowrap">
+                          change image
+                        </span>
+                      </label>
+                    </div>
+                  </Button>
+                </FormControl>
+                <FormMessage className="text-red-600" />
+              </FormItem>
+            )}
+          />
         </div>
 
         <FormItem>
@@ -150,7 +228,7 @@ const EditPost: React.FC<EditPostProps> = ({ post }) => {
           </div>
         </FormItem>
 
-        <Button type="submit" className="btn-gradient rounded w-full mt-2">Submit</Button>
+        <Button type="submit" className="btn-gradient rounded w-full mt-2" disabled={isSubmitting}>Submit</Button>
       </form>
       <Toaster />
     </Form>

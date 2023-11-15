@@ -26,7 +26,7 @@ import EditPost from "../../_components/EditPost"
 import Image from "next/image"
 
 type Post = {
-    id: string
+    _id: string
     title: string
     category: string
     content: string
@@ -41,7 +41,11 @@ export const columns: ColumnDef<Post>[] = [
         header: "Image",
         cell: ({ row }) => {
             const { original } = row
-            return <Image src={original.image} alt="post image" width={30} height={30} className="rounded-full shadow" />
+            return (
+                <div className="relative w-10 h-10 bg-green-500 rounded-full">
+                    <Image src={original.image} alt="post image" fill className="rounded-full absolute shadow" />
+                </div>
+            )
         }
     },
     {
