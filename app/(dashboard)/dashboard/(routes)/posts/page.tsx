@@ -1,18 +1,36 @@
 "use client"
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { columns } from "./columns"
 import { DataTable } from "./data-table"
-import { posts } from '../../_mock-db'
+// import { posts } from '../../_mock-db'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTrigger } from '@/components/ui/dialog'
 import { DialogTitle } from '@radix-ui/react-dialog'
+
 import AddPost from '../../_components/AddPost'
+import axios from 'axios'
 
 
 
 const Posts = () => {
+
+    const [posts, setPosts] = useState([])
+
+    useEffect(() => {
+        async function fetchData() {
+            const response = await axios.get("/api/posts");
+            console.log(response)
+            if (response?.data?.status === 200) {
+                setPosts(response?.data?.posts);
+            } else {
+                setPosts([])
+            }
+        }
+        fetchData();
+    }, [posts]);
+
     return (
         <div className="">
             <div className='flex items-center justify-between'>
@@ -36,7 +54,7 @@ const Posts = () => {
                     </Dialog>
                 </div>
             </div>
-            <DataTable columns={columns} data={posts} />
+            <DataTable columns={columns} data={posts || []} />
         </div>
     )
 }

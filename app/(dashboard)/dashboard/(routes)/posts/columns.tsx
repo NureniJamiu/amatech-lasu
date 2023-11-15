@@ -5,6 +5,7 @@ import { ColumnDef } from "@tanstack/react-table"
 import { Delete, Edit, MoreHorizontal } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
+
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -20,7 +21,9 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
+
 import EditPost from "../../_components/EditPost"
+import Image from "next/image"
 
 type Post = {
     id: string
@@ -36,6 +39,10 @@ export const columns: ColumnDef<Post>[] = [
     {
         accessorKey: "image",
         header: "Image",
+        cell: ({ row }) => {
+            const { original } = row
+            return <Image src={original.image} alt="post image" width={30} height={30} className="rounded-full" />
+        }
     },
     {
         accessorKey: "title",
@@ -54,7 +61,7 @@ export const columns: ColumnDef<Post>[] = [
         header: "Post",
         cell: ({ row }) => {
             const { original } = row
-            return <p className="line-clamp-2">{original.content}</p>
+            return <p className="line-clamp-2" dangerouslySetInnerHTML={{ __html: original.content }}></p>
         }
     },
     {
