@@ -24,12 +24,13 @@ import EditLecturer from "../../_components/EditLecturer"
 import Image from "next/image"
 
 type Lecturer = {
-    id: string
+    _id: string
     title: string
     firstname: string
     lastname: string
     email: string
     phone: number
+    bio: string
     image: string
 }
 
