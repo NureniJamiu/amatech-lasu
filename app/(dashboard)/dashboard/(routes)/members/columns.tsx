@@ -24,7 +24,7 @@ import EditMember from "../../_components/EditMember"
 import Image from "next/image"
 
 type Member = {
-    id: string
+    _id: string
     firstname: string
     lastname: string
     membership: string
@@ -46,7 +46,11 @@ export const columns: ColumnDef<Member>[] = [
         header: "Image",
         cell: ({ row }) => {
             const { original } = row
-            return <Image src={original.image} alt="post image" width={30} height={30} className="rounded-full shadow" />
+            return (
+                <div className="relative w-10 h-10 bg-green-500 rounded-full">
+                    <Image src={original.image} alt="post image" fill className="rounded-full absolute shadow" />
+                </div>
+            )
         }
     },
     {
