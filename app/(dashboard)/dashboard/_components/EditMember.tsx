@@ -28,10 +28,13 @@ import {
 
 import { Input } from "@/components/ui/input"
 import toast, { Toaster } from "react-hot-toast"
+import { useUser } from "@clerk/nextjs"
+import { generateImageUrl } from "@/helpers"
+import axios from "axios"
 
 interface EditMemberProps {
   member: {
-    id: string
+    _id: string
     firstname: string
     lastname: string
     membership: string
@@ -46,6 +49,15 @@ interface EditMemberProps {
   };
 }
 
+const MAX_FILE_SIZE = 1024 * 1024 * 5;
+const ACCEPTED_IMAGE_MIME_TYPES = [
+  "image/jpeg",
+  "image/jpg",
+  "image/png",
+  "image/webp",
+];
+const ACCEPTED_IMAGE_TYPES = ["jpeg", "jpg", "png", "webp"];
+
 const FormSchema = z.object({
   firstname: z.string().min(2, {
     message: "First name must be at least 2 characters.",
@@ -56,13 +68,10 @@ const FormSchema = z.object({
   bio: z.string().min(10, {
     message: "Bio must be at least 10 characters.",
   }),
-  image: z.string({
-    required_error: "Please choose an image",
-  }),
   email: z.string({
     required_error: "Please imput an email",
   }).email(),
-  phone: z.number().min(11, {
+  phone: z.coerce.number().min(11, {
     message: "Phone number must be at least characters.",
   }),
   membership: z.string(),
@@ -70,10 +79,26 @@ const FormSchema = z.object({
   role: z.string(),
   linkedin: z.string().url(),
   twitter: z.string().url(),
+  image: z
+    .any()
+    .nullable()
+    .refine((files) => files === undefined || files?.[0]?.size <= MAX_FILE_SIZE
+    )
+    .refine(
+      (files) => files === undefined || ACCEPTED_IMAGE_MIME_TYPES.includes(files?.[0]?.type),
+      "Only .jpg, .jpeg, .png and .webp formats are supported."
+    ),
 })
 
 
 const EditMember: React.FC<EditMemberProps> = ({ member }) => {
+
+  const { user } = useUser();
+
+
+  const [prevImage, setPrevImage] = useState(member.image || "")
+  const [newImage, setNewImage] = useState<File | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -88,25 +113,62 @@ const EditMember: React.FC<EditMemberProps> = ({ member }) => {
       linkedin: member.linkedin,
       twitter: member.twitter,
       bio: member.bio,
-      // image: member.image
+      image: undefined
     }
   })
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast.success(JSON.stringify(data, null, 2))
+  async function onSubmit(formSchemaData: z.infer<typeof FormSchema>) {
+    setIsSubmitting(true)
+    try {
+      let imageFile
+      let url: string
+
+      if (newImage) {
+        imageFile = await generateImageUrl(formSchemaData.image[0])
+      } else {
+        imageFile = prevImage
+      }
+
+      const values = {
+        ...formSchemaData,
+        image: imageFile,
+        author: user?.fullName
+      }
+
+      if (values.membership === "executive") {
+        url = `/api/members/executive/edit/${member?._id}`
+      } else if (values.membership === "legislative") {
+        url = `/api/members/legislative/edit/${member?._id}`
+      } else {
+        throw new Error
+      }
+
+      const { data } = await axios.patch(url, values)
+
+      if (data.status !== 200) {
+        toast.error(data.message)
+      } else {
+        toast.success(data.message)
+      }
+      setIsSubmitting(false)
+    }
+    catch (err) {
+      // console.log(err)
+      setIsSubmitting(false)
+      toast.error("something went wrong")
+    }
   }
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="">
-
         <div className="grid grid-cols-2 gap-2">
           <FormField
             control={form.control}
             name="firstname"
             render={({ field }) => {
               return <FormItem>
-                <FormLabel>First name</FormLabel>
+                <FormLabel>Firstname</FormLabel>
                 <FormControl>
                   <Input className="rounded" placeholder="e.g: John" {...field} />
                 </FormControl>
@@ -134,7 +196,7 @@ const EditMember: React.FC<EditMemberProps> = ({ member }) => {
               <FormItem>
                 <FormLabel>Membership</FormLabel>
                 <FormControl>
-                  <Select {...field}>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <SelectTrigger className="rounded">
                       <SelectValue placeholder="--Membership--" />
                     </SelectTrigger>
@@ -172,7 +234,7 @@ const EditMember: React.FC<EditMemberProps> = ({ member }) => {
               <FormItem>
                 <FormLabel>Level</FormLabel>
                 <FormControl>
-                  <Select {...field}>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <SelectTrigger className="rounded">
                       <SelectValue placeholder="--Level--" />
                     </SelectTrigger>
@@ -213,7 +275,7 @@ const EditMember: React.FC<EditMemberProps> = ({ member }) => {
               <FormItem>
                 <FormLabel>Role</FormLabel>
                 <FormControl>
-                  <Select {...field}>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <SelectTrigger className="rounded">
                       <SelectValue placeholder="--Role--" />
                     </SelectTrigger>
@@ -279,14 +341,29 @@ const EditMember: React.FC<EditMemberProps> = ({ member }) => {
             )}
           />
           <div className="col-span-2">
+
+            <span className="line-clamp-1 text-xs">Image link: {prevImage}</span>
             <FormField
               control={form.control}
               name="image"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Upload image</FormLabel>
+                  <FormLabel>Change image</FormLabel>
                   <FormControl>
-                    <Input className="rounded" type="file" {...field} />
+                    <Button size="lg" type="button">
+                      <Input
+                        type="file"
+                        id="fileInput"
+                        onBlur={field.onBlur}
+                        name={field.name}
+                        disabled={isSubmitting}
+                        onChange={(e) => {
+                          field.onChange(e.target.files);
+                          setNewImage(e.target.files?.[0] || null);
+                        }}
+                        ref={field.ref}
+                      />
+                    </Button>
                   </FormControl>
                   <FormMessage className="text-red-600" />
                 </FormItem>
@@ -295,7 +372,7 @@ const EditMember: React.FC<EditMemberProps> = ({ member }) => {
           </div>
         </div>
 
-        <Button type="submit" className="btn-gradient rounded w-full mt-2">Submit</Button>
+        <Button type="submit" className="btn-gradient rounded w-full mt-2" disabled={isSubmitting}>Submit</Button>
       </form>
       <Toaster />
     </Form>

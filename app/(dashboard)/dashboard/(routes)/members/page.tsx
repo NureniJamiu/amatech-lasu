@@ -29,7 +29,6 @@ const Members = () => {
     useEffect(() => {
         async function fetchData() {
             const response = await axios.get("/api/members/executive");
-            console.log(response)
             if (response?.data?.status === 200) {
                 setExecutiveMember(response?.data?.executives);
             } else {
@@ -42,7 +41,7 @@ const Members = () => {
     useEffect(() => {
         async function fetchData() {
             const response = await axios.get("/api/members/legislative");
-            console.log(response)
+            // console.log(response)
             if (response?.data?.status === 200) {
                 setLegislativeMember(response?.data?.legislatives);
             } else {
