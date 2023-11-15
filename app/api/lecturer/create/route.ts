@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
 
 
         return NextResponse.json({
-        message: "Post created successfully!",
+        message: "Lecturer created successfully!",
         status: 201,
     });
   } catch (err) {
