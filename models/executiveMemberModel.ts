@@ -7,7 +7,7 @@ const executiveMemberSchema = new Schema(
       type: String,
       required: true,
     },
-    surname: {
+    lastname: {
       type: String,
       required: true,
     },
@@ -24,7 +24,7 @@ const executiveMemberSchema = new Schema(
       required: true,
     },
     level: {
-      type: Number,
+      type: String,
       required: true,
     },
     membership: {

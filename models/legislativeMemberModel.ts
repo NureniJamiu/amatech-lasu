@@ -3,11 +3,11 @@ const { Schema } = mongoose;
 
 const legislativeMemberSchema = new Schema(
   {
-    name: {
+    firstname: {
       type: String,
       required: true,
     },
-    surname: {
+    lastname: {
       type: String,
       required: true,
     },
@@ -24,7 +24,7 @@ const legislativeMemberSchema = new Schema(
       required: true,
     },
     level: {
-      type: Number,
+      type: String,
       required: true,
     },
     membership: {

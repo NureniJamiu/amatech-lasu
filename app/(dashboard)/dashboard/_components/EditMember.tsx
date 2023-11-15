@@ -54,7 +54,7 @@ const FormSchema = z.object({
     message: "Last name must be at least 2 characters.",
   }),
   bio: z.string().min(10, {
-    message: "Bio must be at least 2 characters.",
+    message: "Bio must be at least 10 characters.",
   }),
   image: z.string({
     required_error: "Please choose an image",

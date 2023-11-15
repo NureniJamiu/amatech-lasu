@@ -31,7 +31,11 @@ import toast, { Toaster } from "react-hot-toast"
 import { generateImageUrl } from "@/helpers"
 import axios from "axios"
 import { useUser } from "@clerk/nextjs"
-import { Paperclip } from "lucide-react"
+// import { Paperclip } from "lucide-react"
+import Image from "next/image"
+
+import { Image as ImageIcon, Paperclip } from "lucide-react"
+
 
 const MAX_FILE_SIZE = 1024 * 1024 * 5;
 const ACCEPTED_IMAGE_MIME_TYPES = [
@@ -40,6 +44,8 @@ const ACCEPTED_IMAGE_MIME_TYPES = [
   "image/png",
   "image/webp",
 ];
+const ACCEPTED_IMAGE_TYPES = ["jpeg", "jpg", "png", "webp"];
+
 
 const FormSchema = z.object({
   firstname: z.string().min(2, {
@@ -49,7 +55,7 @@ const FormSchema = z.object({
     message: "Last name must be at least 2 characters.",
   }),
   bio: z.string().min(10, {
-    message: "Bio must be at least 2 characters.",
+    message: "Bio must be at least 10 characters.",
   }),
   image: z
     .any()
@@ -71,7 +77,7 @@ const FormSchema = z.object({
   role: z.string(),
   linkedin: z.string().url(),
   twitter: z.string().url(),
-  createdBy: z.string(),
+  // createdBy: z.string(),
 })
 
 
@@ -93,24 +99,21 @@ const AddMember = () => {
     setIsSubmitting(true)
     try {
       let imageFile = await generateImageUrl(formSchemaData.image[0])
-      toast.success("Image generated...")
       const values = {
         ...formSchemaData,
         image: imageFile,
         createdBy: user?.fullName
       }
 
-      console.log(values)
+      const { data } = await axios.post("/api/members/create", values)
 
-      // const { data } = await axios.post("/api/lecturer/create", values)
-
-      // if (data.status !== 201) {
-      //   toast.error(data.message)
-      //   setIsSubmitting(false)
-      // } else {
-      //   toast.success(data.message)
-      //   setIsSubmitting(false)
-      // }
+      if (data.status !== 201) {
+        toast.error(data.message)
+        setIsSubmitting(false)
+      } else {
+        toast.success(data.message)
+        setIsSubmitting(false)
+      }
     }
     catch (err) {
       // console.log(err)
@@ -129,7 +132,7 @@ const AddMember = () => {
             name="firstname"
             render={({ field }) => {
               return <FormItem>
-                <FormLabel>Surname</FormLabel>
+                <FormLabel>Firstname</FormLabel>
                 <FormControl>
                   <Input className="rounded" placeholder="e.g: John" {...field} />
                 </FormControl>
@@ -329,10 +332,11 @@ const AddMember = () => {
               )}
             />
           </div>
+
         </div>
 
 
-        <Button type="submit" className="btn-gradient rounded w-full mt-2">Submit</Button>
+        <Button type="submit" className="btn-gradient rounded w-full mt-2" disabled={isSubmitting}>Submit</Button>
       </form>
       <Toaster />
     </Form>

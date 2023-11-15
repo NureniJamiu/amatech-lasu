@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
             return new NextResponse("Unauthorized", {status: 401});
         }
 
-        console.log("REQUEST DATA", title, category, content, image, author)
+        // console.log("REQUEST DATA", title, category, content, image, author)
 
 
         const post = new Blog({
