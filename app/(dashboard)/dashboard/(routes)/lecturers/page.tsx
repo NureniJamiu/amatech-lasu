@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/dialog"
 import AddLecturer from '../../_components/AddLecturer'
 import axios from 'axios'
+import { Toaster } from 'react-hot-toast'
 
 
 const Lecturers = () => {
@@ -59,6 +60,7 @@ const Lecturers = () => {
             </div>
 
             <DataTable columns={columns} data={lecturers} />
+            <Toaster />
         </div>
     )
 }

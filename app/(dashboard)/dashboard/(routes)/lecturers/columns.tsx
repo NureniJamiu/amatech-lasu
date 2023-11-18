@@ -22,6 +22,8 @@ import {
 } from "@/components/ui/dialog"
 import EditLecturer from "../../_components/EditLecturer"
 import Image from "next/image"
+import toast from "react-hot-toast"
+import axios from "axios"
 
 type Lecturer = {
     _id: string
@@ -35,6 +37,23 @@ type Lecturer = {
 }
 
 const iconStyle = `text-sm flex items-center gap-2 w-full p-1 rounded cursor-pointer`
+
+const handleDelete = async (id: string) => {
+    const toastId = toast.loading("Deleting lecturer, please wait...")
+    try {
+        const { data } = await axios.delete(`/api/lecturer/delete/${id}`);
+        toast.dismiss(toastId)
+        if (data.status !== 200) {
+            toast.error(data.message)
+        } else {
+            toast.success(data.message)
+        }
+    } catch (error) {
+        // console.log(error)
+        toast.dismiss(toastId)
+        toast.error("something went wrong")
+    }
+};
 
 export const columns: ColumnDef<Lecturer>[] = [
     {
@@ -94,7 +113,10 @@ export const columns: ColumnDef<Lecturer>[] = [
                             </DialogTrigger>
 
                             <DropdownMenuItem>
-                                <p className={`${iconStyle} hover:bg-red-100 hover:text-red-600`}><Delete size={15} /> Delete </p>
+                                <p
+                                    className={`${iconStyle} hover:bg-red-100 hover:text-red-600`}
+                                    onClick={() => handleDelete(lecturer?._id)}
+                                ><Delete size={15} /> Delete </p>
                             </DropdownMenuItem>
                         </DropdownMenuContent>
 

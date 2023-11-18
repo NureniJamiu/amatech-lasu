@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/dialog"
 import AddMember from '../../_components/AddMember'
 import axios from 'axios'
+import { Toaster } from 'react-hot-toast'
 
 
 const tabStyle = `'bg-gray-400 px-2 text-sm md:text-base py-3 leading-none select-none first:rounded-tl-md last:rounded-tr-md hover:text-green-500 data-[state=active]:text-green-600 data-[state=active]:border-b data-[state=active]:border-b-green-600 cursor-pointer`
@@ -74,7 +75,7 @@ const Members = () => {
                 </div>
             </div>
 
-            <Tabs defaultValue="account" className="">
+            <Tabs defaultValue="executive" className="">
                 <TabsList className='space-x-2 w-full'>
                     <TabsTrigger value="executive" className={`${tabStyle}`}>Executive Members</TabsTrigger>
                     <TabsTrigger value="legislative" className={`${tabStyle}`}>Legislative Members</TabsTrigger>
@@ -86,6 +87,7 @@ const Members = () => {
                     <DataTable columns={columns} data={legislativeMembers} />
                 </TabsContent>
             </Tabs>
+            <Toaster />
         </div>
     )
 }

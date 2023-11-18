@@ -2,13 +2,12 @@ import Lecturer from "@/models/lecturerModel"
 import { auth } from "@clerk/nextjs"
 import { NextResponse } from "next/server"
 
-export async function PATCH(
+export async function DELETE(
     req: Request, {params}: {params: {lecturerId: string}}
 ) {
     try {
         const {userId} = auth()
         const {lecturerId} = params
-        const values = await req.json()
 
         if (!userId) {
             return NextResponse.json({
@@ -17,7 +16,7 @@ export async function PATCH(
             })
         }
 
-        const lecturer = await Lecturer.findByIdAndDelete(lecturerId, values)
+        const lecturer = await Lecturer.findByIdAndDelete(lecturerId)
 
         return NextResponse.json({
             message: "Lecturer deleted successfully!",

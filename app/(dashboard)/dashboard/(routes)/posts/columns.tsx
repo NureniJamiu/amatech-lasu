@@ -42,13 +42,18 @@ const iconStyle = `text-sm flex items-center gap-2 w-full p-1 rounded cursor-poi
 
 const handleDelete = async (id: string) => {
     const toastId = toast.loading("Deleting post, please wait...")
-    const { data } = await axios.delete(`/api/posts/delete/${id}`);
-    if (data.status !== 200) {
+    try {
+        const { data } = await axios.delete(`/api/posts/delete/${id}`);
         toast.dismiss(toastId)
-        toast.error(data.message)
-    } else {
+        if (data.status !== 200) {
+            toast.error(data.message)
+        } else {
+            toast.success(data.message)
+        }
+    } catch (error) {
+        // console.log(error)
         toast.dismiss(toastId)
-        toast.success(data.message)
+        toast.error("Something went wrong.")
     }
 };
 

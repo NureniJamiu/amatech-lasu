@@ -2,13 +2,12 @@ import LegislativeMember from "@/models/legislativeMemberModel"
 import { auth } from "@clerk/nextjs"
 import { NextResponse } from "next/server"
 
-export async function PATCH(
+export async function DELETE(
     req: Request, {params}: {params: {memberId: string}}
 ) {
     try {
         const {userId} = auth()
         const {memberId} = params
-        const values = await req.json()
 
         if (!userId) {
             return NextResponse.json({
@@ -17,7 +16,7 @@ export async function PATCH(
             })
         }
 
-        const member = await LegislativeMember.findByIdAndDelete(memberId, values)
+        const member = await LegislativeMember.findByIdAndDelete(memberId)
 
         return NextResponse.json({
             message: "Member deleted successfully!",
