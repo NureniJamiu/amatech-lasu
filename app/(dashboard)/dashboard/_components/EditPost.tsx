@@ -95,6 +95,7 @@ const EditPost: React.FC<EditPostProps> = ({ post }) => {
 
   async function onSubmit(formSchemaData: z.infer<typeof FormSchema>) {
     setIsSubmitting(true)
+    const toastId = toast.loading("Updating post, Please wait...")
     try {
       let imageFile
 
@@ -113,6 +114,7 @@ const EditPost: React.FC<EditPostProps> = ({ post }) => {
 
       const { data } = await axios.patch(`/api/posts/edit/${post?._id}`, values)
 
+      toast.dismiss(toastId)
       if (data.status !== 200) {
         toast.error(data.message)
       } else {
@@ -228,7 +230,7 @@ const EditPost: React.FC<EditPostProps> = ({ post }) => {
           </div>
         </FormItem>
 
-        <Button type="submit" className="btn-gradient rounded w-full mt-2" disabled={isSubmitting}>Submit</Button>
+        <Button type="submit" className="btn-gradient rounded w-full mt-2" disabled={isSubmitting}>Update Post</Button>
       </form>
       <Toaster />
     </Form>

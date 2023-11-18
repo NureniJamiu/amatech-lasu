@@ -84,6 +84,7 @@ const AddPost = () => {
 
   async function onSubmit(formSchemaData: z.infer<typeof FormSchema>) {
     setIsSubmitting(true)
+    const toastId = toast.loading("Creating post, Please wait...")
     try {
 
       let imageFile = await generateImageUrl(formSchemaData.image[0])
@@ -96,6 +97,7 @@ const AddPost = () => {
 
       const { data } = await axios.post("/api/posts/create", values)
 
+      toast.dismiss(toastId)
       if (data.status !== 201) {
         toast.error(data.message)
         setIsSubmitting(false)
@@ -232,9 +234,8 @@ const AddPost = () => {
           </div>
         </FormItem>
 
-        <Button type="submit" className="btn-gradient rounded w-full mt-2" disabled={isSubmitting}>Submit</Button>
+        <Button type="submit" className="btn-gradient rounded w-full mt-2" disabled={isSubmitting}>Create Post</Button>
       </form>
-      <Toaster />
     </Form>
   )
 }
