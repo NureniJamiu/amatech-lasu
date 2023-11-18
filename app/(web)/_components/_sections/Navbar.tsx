@@ -72,11 +72,11 @@ const Navbar = () => {
                             </div>
                         </NavigationMenuItem>
 
-                        <NavigationMenuItem className='flex items-center'>
+                        <NavigationMenuItem className='hidden lg:flex items-center'>
                             <NavigationMenuItem>
                                 <NavigationMenuTrigger>Students</NavigationMenuTrigger>
                                 <NavigationMenuContent>
-                                    <ul className="grid gap-3 p-6 md:w-[300px] lg:w-[400px] lg:grid-cols-[1fr_1fr] bg-white rounded-xl bg-opacity-50">
+                                    <ul className="grid gap-3 p-6 md:w-[300px] lg:w-[400px] lg:grid-cols-[1fr_1fr] bg-white rounded-xl bg-opacity-80">
                                         <ListItem href="/executives" title="Student Executives">
                                             Meet our SEC Members
                                         </ListItem>
@@ -93,7 +93,7 @@ const Navbar = () => {
                             <NavigationMenuItem>
                                 <NavigationMenuTrigger>Academics</NavigationMenuTrigger>
                                 <NavigationMenuContent className=''>
-                                    <ul className="grid w-[300px] gap-3 p-4 md:w-[400px] md:grid-cols-2 lg:w-[500px] bg-white rounded-xl bg-opacity-50">
+                                    <ul className="grid w-[300px] gap-3 p-4 md:w-[400px] md:grid-cols-2 lg:w-[500px] bg-white rounded-xl bg-opacity-80">
                                         {components.map((component) => (
                                             <ListItem
                                                 key={component.title}
@@ -110,7 +110,7 @@ const Navbar = () => {
                             <NavigationMenuItem>
                                 <Link href="/docs" legacyBehavior passHref>
                                     <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                                        Documentation
+                                        Lecturers
                                     </NavigationMenuLink>
                                 </Link>
                             </NavigationMenuItem>
