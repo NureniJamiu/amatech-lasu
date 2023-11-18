@@ -92,7 +92,7 @@ const AddLecturer = () => {
 
   async function onSubmit(formSchemaData: z.infer<typeof FormSchema>) {
     setIsSubmitting(true)
-    const toastId = toast.loading("Creating lecturer, Please wait...")
+    const toastId = toast.loading("Adding lecturer, Please wait...")
 
     try {
       let imageFile = await generateImageUrl(formSchemaData.image[0])
@@ -283,7 +283,7 @@ const AddLecturer = () => {
           </div>
         </FormItem>
 
-        <Button type="submit" className="btn-gradient rounded w-full mt-2" disabled={isSubmitting}>Create Lecturer</Button>
+        <Button type="submit" className="btn-gradient rounded w-full mt-2" disabled={isSubmitting}>Add Lecturer</Button>
       </form>
     </Form>
   )

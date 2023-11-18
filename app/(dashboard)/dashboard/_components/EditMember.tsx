@@ -200,7 +200,7 @@ const EditMember: React.FC<EditMemberProps> = ({ member }) => {
               <FormItem>
                 <FormLabel>Membership</FormLabel>
                 <FormControl>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <Select onValueChange={field.onChange} defaultValue={field.value} disabled>
                     <SelectTrigger className="rounded">
                       <SelectValue placeholder="--Membership--" />
                     </SelectTrigger>

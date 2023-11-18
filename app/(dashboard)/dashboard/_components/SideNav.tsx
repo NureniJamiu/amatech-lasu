@@ -42,7 +42,7 @@ const SideNav = () => {
     const [activeItem, setActiveItem] = useState("Home");
 
     return (
-        <div className="flex flex-col justify-between md:w-full lg:w-52  h-full">
+        <div className="flex flex-col justify-between md:w-full lg:w-52 h-full">
             <div>
                 <div className="pb-5 lg:p-5">
                     <Link href="/" className="flex items-center justify-between">
@@ -75,7 +75,7 @@ const SideNav = () => {
                 <Dialog>
                     <DialogTrigger className="w-full">
                         <div
-                            className=" flex items-center justify-center gap-3 rounded text-gray-100 p-3 bg-green-600 border-2 border-green-700 font-semibold cursor-pointer"
+                            className=" flex items-center justify-center gap-3 rounded text-gray-100 p-3 bg-green-600 border-2 border-green-700 font-semibold cursor-pointer pb-2"
                         >
                             <Edit />
                             Create Post
@@ -94,13 +94,7 @@ const SideNav = () => {
                     </DialogContent>
                 </Dialog>
 
-                <div
-                    className="flex items-center justify-center gap-3 rounded mb-2 bg-gray-400 p-3 border-2 border-gray-500 font-semibold cursor-pointer"
-                //   onClick={handleLogout}
-                >
-                    <LogOut />
-                    Sign out
-                </div>
+
             </div>
         </div>
     )

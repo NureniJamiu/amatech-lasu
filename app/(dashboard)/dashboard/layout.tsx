@@ -33,7 +33,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
               <DashboardMobileMenu />
             </div>
             {/* TOP NAVBAR  */}
-            <div className="flex justify-between items-center md:px-8 w-full mt-6 lg:mt-0 border-t border-neutral-300 pt-8 lg:pt-0">
+            <div className="flex justify-between items-center md:px-8 w-full mt-6 lg:mt-0 border-t lg:border-t-0 border-neutral-300 pt-8 lg:pt-0">
               <span className="text-gray-200 uppercase font-semibold px-3">
                 Welcome aboard, <br></br>
                 <span className="text-2xl md:text-3xl font-bold">
@@ -48,7 +48,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                     name="search"
                     placeholder="Search..."
                     className="w-60 px-3 py-1 border border-gray-300 rounded focus:outline-none focus:ring-green-500 focus:border-green-500 shadow-md"
-                    required
+                    disabled
                   />
                 </form>
                 <div className="absolute top-7 right-5 lg:static">
