@@ -97,6 +97,8 @@ const AddMember = () => {
 
   async function onSubmit(formSchemaData: z.infer<typeof FormSchema>) {
     setIsSubmitting(true)
+    const toastId = toast.loading("Creating member, Please wait...")
+
     try {
       let imageFile = await generateImageUrl(formSchemaData.image[0])
       const values = {
@@ -107,6 +109,7 @@ const AddMember = () => {
 
       const { data } = await axios.post("/api/members/create", values)
 
+      toast.dismiss(toastId)
       if (data.status !== 201) {
         toast.error(data.message)
         setIsSubmitting(false)
@@ -117,6 +120,7 @@ const AddMember = () => {
     }
     catch (err) {
       // console.log(err)
+      toast.dismiss(toastId)
       setIsSubmitting(false)
       toast.error("something went wrong")
     }
@@ -336,9 +340,8 @@ const AddMember = () => {
         </div>
 
 
-        <Button type="submit" className="btn-gradient rounded w-full mt-2" disabled={isSubmitting}>Submit</Button>
+        <Button type="submit" className="btn-gradient rounded w-full mt-2" disabled={isSubmitting}>Create Member</Button>
       </form>
-      <Toaster />
     </Form>
   )
 }

@@ -92,6 +92,8 @@ const AddLecturer = () => {
 
   async function onSubmit(formSchemaData: z.infer<typeof FormSchema>) {
     setIsSubmitting(true)
+    const toastId = toast.loading("Creating lecturer, Please wait...")
+
     try {
       let imageFile = await generateImageUrl(formSchemaData.image[0])
 
@@ -104,6 +106,7 @@ const AddLecturer = () => {
 
       const { data } = await axios.post("/api/lecturer/create", values)
 
+      toast.dismiss(toastId)
       if (data.status !== 201) {
         toast.error(data.message)
         setIsSubmitting(false)
@@ -114,6 +117,7 @@ const AddLecturer = () => {
     }
     catch (err) {
       // console.log(err)
+      toast.dismiss(toastId)
       setIsSubmitting(false)
       toast.error("something went wrong")
     }
@@ -279,9 +283,8 @@ const AddLecturer = () => {
           </div>
         </FormItem>
 
-        <Button type="submit" className="btn-gradient rounded w-full mt-2" disabled={isSubmitting}>Submit</Button>
+        <Button type="submit" className="btn-gradient rounded w-full mt-2" disabled={isSubmitting}>Create Lecturer</Button>
       </form>
-      <Toaster />
     </Form>
   )
 }

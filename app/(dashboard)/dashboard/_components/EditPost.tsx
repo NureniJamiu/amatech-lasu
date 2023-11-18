@@ -124,6 +124,7 @@ const EditPost: React.FC<EditPostProps> = ({ post }) => {
     }
     catch (err) {
       // console.log(err)
+      toast.dismiss(toastId)
       setIsSubmitting(false)
       toast.error("something went wrong")
     }
@@ -232,7 +233,6 @@ const EditPost: React.FC<EditPostProps> = ({ post }) => {
 
         <Button type="submit" className="btn-gradient rounded w-full mt-2" disabled={isSubmitting}>Update Post</Button>
       </form>
-      <Toaster />
     </Form>
   )
 }

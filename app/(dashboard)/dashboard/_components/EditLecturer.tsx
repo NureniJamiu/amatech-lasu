@@ -108,6 +108,8 @@ const EditLecturer: React.FC<EditLecturerProps> = ({ lecturer }) => {
 
   async function onSubmit(formSchemaData: z.infer<typeof FormSchema>) {
     setIsSubmitting(true)
+    const toastId = toast.loading("Updating lecturer, Please wait...")
+
     try {
       let imageFile
 
@@ -126,6 +128,7 @@ const EditLecturer: React.FC<EditLecturerProps> = ({ lecturer }) => {
 
       const { data } = await axios.patch(`/api/lecturer/edit/${lecturer?._id}`, values)
 
+      toast.dismiss(toastId)
       if (data.status !== 200) {
         toast.error(data.message)
       } else {
@@ -135,6 +138,7 @@ const EditLecturer: React.FC<EditLecturerProps> = ({ lecturer }) => {
     }
     catch (err) {
       // console.log(err)
+      toast.dismiss(toastId)
       setIsSubmitting(false)
       toast.error("something went wrong")
     }
@@ -281,9 +285,8 @@ const EditLecturer: React.FC<EditLecturerProps> = ({ lecturer }) => {
           </div>
         </FormItem>
 
-        <Button type="submit" className="btn-gradient rounded w-full mt-2" disabled={isSubmitting}>Submit</Button>
+        <Button type="submit" className="btn-gradient rounded w-full mt-2" disabled={isSubmitting}>Update Lecturer</Button>
       </form>
-      <Toaster />
     </Form>
   )
 }

@@ -119,6 +119,8 @@ const EditMember: React.FC<EditMemberProps> = ({ member }) => {
 
   async function onSubmit(formSchemaData: z.infer<typeof FormSchema>) {
     setIsSubmitting(true)
+    const toastId = toast.loading("Updating member, Please wait...")
+
     try {
       let imageFile
       let url: string
@@ -145,6 +147,7 @@ const EditMember: React.FC<EditMemberProps> = ({ member }) => {
 
       const { data } = await axios.patch(url, values)
 
+      toast.dismiss(toastId)
       if (data.status !== 200) {
         toast.error(data.message)
       } else {
@@ -154,6 +157,7 @@ const EditMember: React.FC<EditMemberProps> = ({ member }) => {
     }
     catch (err) {
       // console.log(err)
+      toast.dismiss(toastId)
       setIsSubmitting(false)
       toast.error("something went wrong")
     }
@@ -372,9 +376,8 @@ const EditMember: React.FC<EditMemberProps> = ({ member }) => {
           </div>
         </div>
 
-        <Button type="submit" className="btn-gradient rounded w-full mt-2" disabled={isSubmitting}>Submit</Button>
+        <Button type="submit" className="btn-gradient rounded w-full mt-2" disabled={isSubmitting}>Update Member</Button>
       </form>
-      <Toaster />
     </Form>
   )
 }
