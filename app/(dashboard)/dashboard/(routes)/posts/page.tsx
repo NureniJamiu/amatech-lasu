@@ -11,6 +11,7 @@ import { DialogTitle } from '@radix-ui/react-dialog'
 
 import AddPost from '../../_components/AddPost'
 import axios from 'axios'
+import { Toaster } from 'react-hot-toast'
 
 
 
@@ -55,6 +56,7 @@ const Posts = () => {
                 </div>
             </div>
             <DataTable columns={columns} data={posts || []} />
+            <Toaster />
         </div>
     )
 }

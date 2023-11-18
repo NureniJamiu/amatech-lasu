@@ -22,8 +22,12 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 
+import toast, { Toaster } from "react-hot-toast"
+
+
 import EditPost from "../../_components/EditPost"
 import Image from "next/image"
+import axios from "axios"
 
 type Post = {
     _id: string
@@ -34,6 +38,19 @@ type Post = {
 }
 
 const iconStyle = `text-sm flex items-center gap-2 w-full p-1 rounded cursor-pointer`
+
+
+const handleDelete = async (id: string) => {
+    const toastId = toast.loading("Deleting post, please wait...")
+    const { data } = await axios.delete(`/api/posts/delete/${id}`);
+    if (data.status !== 200) {
+        toast.dismiss(toastId)
+        toast.error(data.message)
+    } else {
+        toast.dismiss(toastId)
+        toast.success(data.message)
+    }
+};
 
 export const columns: ColumnDef<Post>[] = [
     {
@@ -93,7 +110,7 @@ export const columns: ColumnDef<Post>[] = [
                             </DialogTrigger>
 
                             <DropdownMenuItem>
-                                <p className={`${iconStyle} hover:bg-red-100 hover:text-red-600`}><Delete size={15} /> Delete </p>
+                                <p className={`${iconStyle} hover:bg-red-100 hover:text-red-600`} onClick={() => handleDelete(post?._id)}><Delete size={15} /> Delete </p>
                             </DropdownMenuItem>
                         </DropdownMenuContent>
 
