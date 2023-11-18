@@ -29,7 +29,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="h-[calc(100vh-80px)]">
+    <section className="h-[calc(100vh-125px)]">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -46,16 +46,16 @@ const HeroSection = () => {
         className="mySwiper"
       >
         <SwiperSlide>
-          <div className="relative w-500 h-500">
+          <div className="relative w-full h-full">
             <Image
               src="/hero1.jpg"
               alt=""
               width="500"
               height="500"
-              className="object-contain object-left-bottom"
+              className="object-contain object-center"
             />
-            <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 text-white">
-              <div className="mt-20">
+            <div className="absolute flex items-center justify-center top-0 left-0 w-full h-full bg-black bg-opacity-50 text-white">
+              <div>
                 <h1 className="text-3xl md:w-[800px] mx-auto md:text-4xl lg:text-5xl font-semibold text-white py-3 lg:leading-snug">
                   Welcome to the Department of Management Technology
                 </h1>
@@ -71,7 +71,7 @@ const HeroSection = () => {
         </SwiperSlide>
 
         <SwiperSlide>
-          <div className="relative w-500 h-500">
+          <div className="relative w-full h-full">
             <Image
               src="/hero5.jpg"
               alt=""
@@ -79,8 +79,8 @@ const HeroSection = () => {
               height="500"
               className="object-contain object-left-top"
             />
-            <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 text-white">
-              <div className="mt-20">
+            <div className="absolute flex items-center justify-center top-0 left-0 w-full h-full bg-black bg-opacity-50 text-white">
+              <div>
                 <h1 className="text-3xl md:w-[800px] mx-auto md:text-4xl lg:text-5xl font-semibold text-white py-3 lg:leading-snug">
                   Navigating the Future of Project Management
                 </h1>
@@ -94,16 +94,16 @@ const HeroSection = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="relative w-500 h-500">
+          <div className="relative w-full h-full">
             <Image
               src="/hero2.jpg"
               alt=""
               width="500"
               height="500"
-              className="object-contain object-left-top"
+              className="object-contain object-center"
             />
-            <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 text-white">
-              <div className="mt-20">
+            <div className="absolute flex items-center justify-center top-0 left-0 w-full h-full bg-black bg-opacity-50 text-white">
+              <div>
                 <h1 className="text-3xl md:w-[800px] mx-auto md:text-4xl lg:text-5xl font-semibold text-white py-3 lg:leading-snug">
                   Transforming Visions into Project Realities
                 </h1>

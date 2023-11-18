@@ -1,22 +1,21 @@
-export const navLinks = [
+export const components: { title: string; href: string; description: string }[] = [
     {
-        title: "Blogs",
-        url: "/blogs"
+        title: "Learning Hub",
+        href: "/",
+        description:
+            "Unlock the power of Project Management with our comprehensive online courses.",
     },
     {
-        title: "Executives",
-        url: "/executives"
+        title: "Course Outlines",
+        href: "/",
+        description:
+            "A collection of all courses outlines.",
     },
     {
-        title: "Legislative",
-        url: "/legislative"
+        title: "CGPA Calculator",
+        href: "/",
+        description:
+            "Calculate your CPGA with ease.",
     },
-    {
-        title: "Lecturers",
-        url: "/lecturers"
-    },
-    {
-        title: "Suggestion Box",
-        url: "/suggestion-box"
-    },
+
 ]
