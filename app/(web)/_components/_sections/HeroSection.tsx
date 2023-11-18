@@ -28,6 +28,24 @@ const HeroSection = () => {
 
   };
 
+  const swiperContent = [
+    {
+      mainText: "Welcome to The Department of Management Technology.",
+      bodyText: "Dedicated to excellence in Project Management, we nurture students to conquer challenges and seize opportunities in the modern business landscape.",
+      backgroundImage: "/hero1.jpg",
+    },
+    {
+      mainText: "Navigating the Future of Project Management",
+      bodyText: "Dedicated to excellence in Project Management, we nurture students to conquer challenges and seize opportunities in the modern business landscape.",
+      backgroundImage: "/hero5.jpg",
+    },
+    {
+      mainText: "Transforming Visions into Project Realities",
+      bodyText: "Dedicated to excellence in Project Management, we nurture students to conquer challenges and seize opportunities in the modern business landscape.",
+      backgroundImage: "/hero2.jpg",
+    },
+  ]
+
   return (
     <section className="h-[calc(100vh-125px)]">
       <Swiper
@@ -45,77 +63,32 @@ const HeroSection = () => {
         onAutoplayTimeLeft={onAutoplayTimeLeft}
         className="mySwiper"
       >
-        <SwiperSlide>
-          <div className="relative w-full h-full">
-            <Image
-              src="/hero1.jpg"
-              alt=""
-              width="500"
-              height="500"
-              className="object-contain object-center"
-            />
-            <div className="absolute flex items-center justify-center top-0 left-0 w-full h-full bg-black bg-opacity-50 text-white">
-              <div>
-                <h1 className="text-3xl md:w-[800px] mx-auto md:text-4xl lg:text-5xl font-semibold text-white py-3 lg:leading-snug">
-                  Welcome to the Department of Management Technology
-                </h1>
-                <p className='md:w-[600px] mx-auto my-3'>Dedicated to excellence in Project Management, we nurture students to conquer challenges and seize opportunities in the modern business landscape.</p>
-                <div className='flex items-center justify-center gap-2 mt-12'>
-                  <Button className='border-2 border-white text-white px-10 rounded'>Contact Us</Button>
-                  <Button className="bg-white text-black rounded px-10">Get Involved</Button>
+        {swiperContent.map((content, index) => (
+          <SwiperSlide key={content.mainText}>
+            <div className="relative w-full h-full">
+              <Image
+                src={content.backgroundImage}
+                alt=""
+                width="500"
+                height="500"
+                className={`object-contain ${index == 1 ? "object-top" : "object-center"}`}
+              />
+              <div className="absolute flex items-center justify-center top-0 left-0 w-full h-full bg-black bg-opacity-50 text-white">
+                <div>
+                  <h1 className="text-4xl md:text-3xl md:w-[800px] mx-auto md:text-4xl lg:text-5xl font-semibold text-white py-3 lg:leading-snug">
+                    {content.mainText}
+                  </h1>
+                  <p className='md:w-[600px] mx-auto my-3'>{content.bodyText}</p>
+                  <div className='grid md:flex items-center justify-center gap-2 mt-12'>
+                    <Button className='border-2 border-white text-white px-10 rounded'>Contact Us</Button>
+                    <Button className="bg-white text-black rounded px-10 hover:bg-neutral-200">Get Involved</Button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </SwiperSlide>
+        ))}
 
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <div className="relative w-full h-full">
-            <Image
-              src="/hero5.jpg"
-              alt=""
-              width="500"
-              height="500"
-              className="object-contain object-left-top"
-            />
-            <div className="absolute flex items-center justify-center top-0 left-0 w-full h-full bg-black bg-opacity-50 text-white">
-              <div>
-                <h1 className="text-3xl md:w-[800px] mx-auto md:text-4xl lg:text-5xl font-semibold text-white py-3 lg:leading-snug">
-                  Navigating the Future of Project Management
-                </h1>
-                <p className='md:w-[600px] mx-auto my-3'>Dedicated to excellence in Project Management, we nurture students to conquer challenges and seize opportunities in the modern business landscape.</p>
-                <div className='flex items-center justify-center gap-2 mt-12'>
-                  <Button className='border-2 border-white text-white px-10 rounded'>Contact Us</Button>
-                  <Button className="bg-white text-black rounded px-10">Get Involved</Button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="relative w-full h-full">
-            <Image
-              src="/hero2.jpg"
-              alt=""
-              width="500"
-              height="500"
-              className="object-contain object-center"
-            />
-            <div className="absolute flex items-center justify-center top-0 left-0 w-full h-full bg-black bg-opacity-50 text-white">
-              <div>
-                <h1 className="text-3xl md:w-[800px] mx-auto md:text-4xl lg:text-5xl font-semibold text-white py-3 lg:leading-snug">
-                  Transforming Visions into Project Realities
-                </h1>
-                <p className='md:w-[600px] mx-auto my-3'>Dedicated to excellence in Project Management, we nurture students to conquer challenges and seize opportunities in the modern business landscape.</p>
-                <div className='flex items-center justify-center gap-2 mt-12'>
-                  <Button className='border-2 border-white text-white px-10 rounded'>Contact Us</Button>
-                  <Button className="bg-white text-black rounded px-10">Get Involved</Button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
         <div className="autoplay-progress" slot="container-end">
           <svg viewBox="0 0 48 48" ref={progressCircle}>
             <circle cx="24" cy="24" r="20"></circle>
