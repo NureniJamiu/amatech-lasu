@@ -69,11 +69,11 @@
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  color: var(--swiper-theme-color);
+  color: #f2f0f0;
 }
 
 .autoplay-progress svg {
-  --progress: 0;
+  /* --progress: 0; */
   position: absolute;
   left: 0;
   top: 0px;
@@ -81,7 +81,7 @@
   width: 100%;
   height: 100%;
   stroke-width: 4px;
-  stroke: var(--swiper-theme-color);
+  stroke: #f2f0f0;
   fill: none;
   stroke-dashoffset: calc(125.6 * (1 - var(--progress)));
   stroke-dasharray: 125.6;

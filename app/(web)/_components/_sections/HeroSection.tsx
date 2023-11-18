@@ -47,7 +47,7 @@ const HeroSection = () => {
   ]
 
   return (
-    <section className="h-[calc(100vh-125px)]">
+    <section className="h-[calc(100vh-123px)]">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -55,11 +55,7 @@ const HeroSection = () => {
           delay: 3500,
           disableOnInteraction: false,
         }}
-        pagination={{
-          clickable: true,
-        }}
-        navigation={true}
-        modules={[Autoplay, Pagination, Navigation]}
+        modules={[Autoplay]}
         onAutoplayTimeLeft={onAutoplayTimeLeft}
         className="mySwiper"
       >
@@ -75,7 +71,7 @@ const HeroSection = () => {
               />
               <div className="absolute flex items-center justify-center top-0 left-0 w-full h-full bg-black bg-opacity-50 text-white">
                 <div>
-                  <h1 className="text-4xl md:text-3xl md:w-[800px] mx-auto md:text-4xl lg:text-5xl font-semibold text-white py-3 lg:leading-snug">
+                  <h1 className="text-4xl md:text-3xl md:w-[800px] mx-auto lg:text-5xl font-semibold text-white py-3 lg:leading-snug">
                     {content.mainText}
                   </h1>
                   <p className='md:w-[600px] mx-auto my-3'>{content.bodyText}</p>
