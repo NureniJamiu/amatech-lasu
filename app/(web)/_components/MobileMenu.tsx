@@ -10,10 +10,15 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
-import { navLinks } from "../_mock";
+// import { navLinks } from "../_mock";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useUser } from "@clerk/nextjs";
+
+const navLinks = [
+  { title: "Test", url: "test" },
+  { title: "Test", url: "test" },
+]
 
 const MobileMenu = () => {
   const { isSignedIn } = useUser()
