@@ -121,7 +121,7 @@ export const columns: ColumnDef<Post>[] = [
 
                         <DialogContent className="bg-white rounded-xl">
                             <DialogHeader>
-                                <DialogTitle>Edit Lecturer</DialogTitle>
+                                <DialogTitle>Edit Post</DialogTitle>
                                 <DialogDescription>
                                     Click the submit button when done.
                                 </DialogDescription>

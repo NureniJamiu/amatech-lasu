@@ -140,7 +140,7 @@ export const columns: ColumnDef<Member>[] = [
 
                         <DialogContent className="bg-white rounded-xl">
                             <DialogHeader>
-                                <DialogTitle>Edit Lecturer</DialogTitle>
+                                <DialogTitle>Edit Member</DialogTitle>
                                 <DialogDescription>
                                     Click the submit button when done.
                                 </DialogDescription>
