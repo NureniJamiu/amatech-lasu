@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import moment from "moment";
 import axios from "axios";
 import LatestNewsCard from "./LatestNewsCard";
+import BlogPageCard from "../BlogPageCard";
 
 const LatestNews = () => {
     const [posts, setPosts] = useState([])
@@ -33,7 +34,7 @@ const LatestNews = () => {
 
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
                 {posts && posts.map((post, i) => (
-                    <LatestNewsCard
+                    <BlogPageCard
                         key={i}
                         post={post}
                     />
