@@ -130,7 +130,9 @@ const Navbar = () => {
                         <Link href={isSignedIn ? "/dashboard" : "/sign-in"}>
                             <Button className='btn-gradient rounded'>{isSignedIn ? "Dashboard" : "Admin🔒"}</Button></Link>
                     </NavigationMenuItem>
-                    <MobileMenu />
+                    <div className='lg:hidden'>
+                        <MobileMenu />
+                    </div>
                 </div>
             </NavigationMenuList>
         </NavigationMenu>

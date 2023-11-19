@@ -27,7 +27,7 @@ const DynamicSection = () => {
                                 </div>
                             </div>
                             <div className=" flex-1">
-                                <Image src={section.image} alt="mission" width={500} height={500} className={`${isIndexOdd ? "float-left" : "float-right"}`} />
+                                <Image src={section.image} alt="mission" width={400} height={400} className={`${isIndexOdd ? "float-left" : "float-right"}`} />
                             </div>
                         </div>
                     </section>
