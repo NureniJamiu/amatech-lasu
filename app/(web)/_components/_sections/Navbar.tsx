@@ -20,9 +20,6 @@ import { components } from '../../_mock'
 import { Button } from '@/components/ui/button'
 import { useUser } from '@clerk/nextjs'
 import { cn } from "@/lib/utils"
-import dynamic from 'next/dynamic'
-
-// const NoSSR = dynamic(() => import('../components/no-ssr'), { ssr: false })
 
 const textGradient = `bg-gradient-to-r from-green-700 to-[#86b550] text-transparent bg-clip-text`
 
