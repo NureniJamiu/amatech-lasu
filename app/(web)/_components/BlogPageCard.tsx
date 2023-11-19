@@ -18,10 +18,10 @@ const BlogPageCard = ({ post }: any) => {
           <small className="bg-yellow-400 py-1 px-2 rounded uppercase font-semibold">{post?.category}</small>
         </div>
         <h2 className="font-semibold mt-1 text-xl capitalize text-zinc-800 border-t pt-2">{post?.title}</h2>
-        <p
+        <div
           className="text-sm my-3 line-clamp-2 mb text-gray-700"
           dangerouslySetInnerHTML={markup}
-        ></p>
+        ></div>
       </div>
       <Link href={`blogs/${post?._id}`} className="text-center font-bold text-xs py-3">
         Read More
