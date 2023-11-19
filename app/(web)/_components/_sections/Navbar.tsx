@@ -20,6 +20,9 @@ import { components } from '../../_mock'
 import { Button } from '@/components/ui/button'
 import { useUser } from '@clerk/nextjs'
 import { cn } from "@/lib/utils"
+import dynamic from 'next/dynamic'
+
+// const NoSSR = dynamic(() => import('../components/no-ssr'), { ssr: false })
 
 const textGradient = `bg-gradient-to-r from-green-700 to-[#86b550] text-transparent bg-clip-text`
 
@@ -56,7 +59,7 @@ const Navbar = () => {
     const { isSignedIn } = useUser()
 
     return (
-        <NavigationMenu className='sticky left-0 top-0 w-full px-5 py-1 bg-white shadow-2xl'>
+        <NavigationMenu className='sticky left-0 top-0 w-full px-5 py-1 bg-white shadow-2xl' suppressHydrationWarning>
             <NavigationMenuList className='md:px-10 lg:px-20 gap-5 w-full '>
                 <div className='flex items-center justify-between w-full max-w-6xl'>
                     <NavigationMenuItem className='flex items-center gap-10'>

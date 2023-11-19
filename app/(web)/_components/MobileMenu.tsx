@@ -17,7 +17,7 @@ import { useUser } from "@clerk/nextjs";
 
 const navLinks = [
   { title: "Test", url: "test" },
-  { title: "Test", url: "test" },
+  { title: "Test1", url: "test1" },
 ]
 
 const MobileMenu = () => {
