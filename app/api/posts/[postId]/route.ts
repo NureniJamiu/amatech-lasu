@@ -9,7 +9,7 @@ export async function GET(
     // console.log("POSTID", postId);
 
 
-        const post = await Blog.findById(postId)
+        const post = await Blog.findById(postId, '_id title content category image author createdAt').exec()
 
     // console.log("POST", post);
         

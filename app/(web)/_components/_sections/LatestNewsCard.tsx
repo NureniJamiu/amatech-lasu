@@ -3,13 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-type Post = {
-    _id: string
-    title: string
-    category: string
-    content: string
-    image: string
-}
 
 const LatestNewsCard = ({ post }: any) => {
     return (
