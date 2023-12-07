@@ -40,7 +40,6 @@ const SingleBlog = () => {
     }, [postId]);
 
     if (!post && isLoading) {
-        // Handle the case when post is still undefined
         return (
             <div className="flex items-center justify-center h-screen">
                 <Loader size={60} className="animate-spin" color="gray" />
@@ -49,7 +48,6 @@ const SingleBlog = () => {
     }
 
     if (!post) {
-        // Handle the case when post is still undefined
         return (
             <div className="flex items-center justify-center h-screen">
                 <p>Error loading post. Please try again.</p>

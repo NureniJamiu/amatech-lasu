@@ -8,12 +8,14 @@ export default authMiddleware({
             "/", 
             "/blogs", 
             "/blogs/(.*)",
+            "/api/posts", 
+            "/api/posts/(.*)",
             "/lecturers", 
+            "/api/lecturer",
+            "/api/lecturer/(.*)",
             "/executives", 
             "/legislative", 
             "/suggestion-box", 
-            "/api/posts", 
-            "/api/posts/(.*)"
       ]
 });
  
