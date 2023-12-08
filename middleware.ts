@@ -13,8 +13,8 @@ export default authMiddleware({
             "/lecturers", 
             "/api/lecturer",
             "/api/lecturer/(.*)",
-            "/executives", 
-            "/legislative", 
+            "/students/(.*)", 
+            "/academics/(.*)", 
             "/suggestion-box", 
       ]
 });

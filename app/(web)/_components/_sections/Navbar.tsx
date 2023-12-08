@@ -124,7 +124,7 @@ const Navbar = () => {
                     </NavigationMenuItem>
 
                     <NavigationMenuItem className='hidden lg:flex items-center gap-2'>
-                        <Link href="/vote"><Button className='border-2 rounded border-green-800 text-green-800 hover:bg-green-600 hover:text-white'>Voting System</Button></Link>
+                        <Link href="/academics/learning-hub"><Button className='border-2 rounded border-green-800 text-green-800 hover:bg-green-600 hover:text-white'>Learning Hub</Button></Link>
                         <Link href={isSignedIn ? "/dashboard" : "/sign-in"}>
                             <Button className='btn-gradient rounded'>{isSignedIn ? "Dashboard" : "Admin🔒"}</Button></Link>
                     </NavigationMenuItem>
