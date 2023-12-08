@@ -6,19 +6,19 @@ import calculatorImage from "../../../public/calculator.svg"
 export const components: { title: string; href: string; description: string }[] = [
     {
         title: "Learning Hub",
-        href: "/",
+        href: "/academics/learning-hub",
         description:
             "Unlock the power of Project Management with our comprehensive online courses.",
     },
     {
-        title: "Course Outlines",
-        href: "/",
+        title: "All courses",
+        href: "/academics/all-offered-courses",
         description:
-            "A collection of all courses outlines.",
+            "A collection of all courses across all levels in the department.",
     },
     {
         title: "CGPA Calculator",
-        href: "/",
+        href: "/academics/cgpa-calculator",
         description:
             "Calculate your CPGA with ease.",
     },

@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-import MemberCard from "../../_components/MemberCard";
-import TitleHero from "../../_components/TitleHero";
+import MemberCard from "../../../_components/MemberCard";
+import TitleHero from "../../../_components/TitleHero";
 import axios from "axios";
 
 const Executive = () => {

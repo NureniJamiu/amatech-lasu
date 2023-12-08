@@ -60,7 +60,7 @@ const Navbar = () => {
                     <NavigationMenuItem className='flex items-center gap-10'>
                         <NavigationMenuItem>
                             <div className='flex items-center gap-1'>
-                                <Link href="https://www.lasu.edu.ng" legacyBehavior passHref>
+                                <Link href="https://www.lasu.edu.ng" target='__blank' legacyBehavior passHref>
                                     <Image src="/lasu.png" alt='amatech logo' width={50} height={50} />
                                 </Link>
                                 <Link href="/" legacyBehavior passHref>
@@ -74,13 +74,13 @@ const Navbar = () => {
                                 <NavigationMenuTrigger>Students</NavigationMenuTrigger>
                                 <NavigationMenuContent>
                                     <ul className="grid gap-3 p-6 md:w-[300px] lg:w-[400px] lg:grid-cols-[1fr_1fr] bg-white rounded-xl bg-opacity-80">
-                                        <ListItem href="/executives" title="Student Executives">
+                                        <ListItem href="/students/executive-members" title="Student Executives">
                                             Meet our SEC Members
                                         </ListItem>
-                                        <ListItem href="/legislatives" title="Student Legislatives">
+                                        <ListItem href="/students/legislative-members" title="Student Legislatives">
                                             Meet our SLC Members
                                         </ListItem>
-                                        <ListItem href="/" title="First Class Graduates">
+                                        <ListItem href="/students/first-class-graduates" title="First Class Graduates">
                                             Past students with First Class Honours
                                         </ListItem>
                                     </ul>
