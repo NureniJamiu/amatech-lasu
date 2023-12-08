@@ -21,9 +21,7 @@ import { Button } from '@/components/ui/button'
 import { useUser } from '@clerk/nextjs'
 import { cn } from "@/lib/utils"
 
-const textGradient = `bg-gradient-to-r from-green-700 to-[#86b550] text-transparent bg-clip-text`
-
-
+// const textGradient = `bg-gradient-to-r from-green-700 to-[#86b550] text-transparent bg-clip-text`
 
 const ListItem = React.forwardRef<
     React.ElementRef<"a">,
