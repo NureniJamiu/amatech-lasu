@@ -1,7 +1,11 @@
 import React from "react";
 
-const Page = () => {
-    return <div>Learning Hub</div>;
+import ComingSoon from "@/app/(web)/_components/ComingSoon";
+
+const LearningHub = () => {
+    return <div className="h-[calc(100vh-60px)]">
+        <ComingSoon />
+    </div>;
 };
 
-export default Page;
+export default LearningHub;
