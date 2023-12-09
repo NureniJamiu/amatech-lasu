@@ -47,7 +47,7 @@ const HeroSection = () => {
   ]
 
   return (
-    <section className="h-screen md:h-[calc(100vh-123px)]">
+    <section className="h-[calc(100vh-123px)]">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
