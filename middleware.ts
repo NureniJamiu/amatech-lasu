@@ -8,13 +8,13 @@ export default authMiddleware({
             "/", 
             "/blogs", 
             "/blogs/(.*)",
+            "/students/(.*)", 
+            "/academics/(.*)", 
             "/api/posts", 
             "/api/posts/(.*)",
             "/lecturers", 
             "/api/lecturer",
             "/api/lecturer/(.*)",
-            "/students/(.*)", 
-            "/academics/(.*)", 
             "/suggestion-box", 
       ]
 });
