@@ -26,21 +26,19 @@ const ComingSoon = () => {
     }, [timeLeft]);
     const seconds = timeLeft % 60;
 
-    return <div className="relative flex items-center justify-center w-full h-full">
+    return <div className="relative flex items-center justify-center w-full px-5 h-full">
         <Image
-            alt="coming soon"
-            // width={500}
-            // height={500}
-            fill
             src={comingSoon}
             className="absolute top-0 left-0 w-full object-cover"
+            alt="coming soon"
+            fill
         />
         <div className="absolute bg-black top-0 left-0 right-0 w-full h-full bg-opacity-70"></div>
 
         <div className="absolute left-auto right-auto top-auto bottom-auto text-white text-center">
-            <h2 className="text-8xl font-semibold">COMING SOON</h2>
-            <p className="inline-block py-8 border-b">This site is currently under construction. Please check back later.</p>
-            <div className=" text-5xl font-semibold my-8">
+            <h2 className="text-5xl px-5 lg:text-8xl font-semibold">COMING SOON</h2>
+            <p className="inline-block py-8 px-5 border-b">This site is currently under construction. Please check back later.</p>
+            <div className="text-3xl lg:text-5xl font-semibold my-8">
                 <span className="mx-3">
                     14
                     <span className="text-base">D</span>
