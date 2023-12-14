@@ -249,7 +249,7 @@ const AddMember = () => {
                     </SelectTrigger>
                     <SelectContent className="bg-white"
                     >
-                      <SelectGroup >
+                      <SelectGroup className="h-44 overflow-y-scroll">
                         <SelectLabel>Role</SelectLabel>
                         <SelectItem value="president">President</SelectItem>
                         <SelectItem value="v. president">Vice President</SelectItem>
@@ -261,6 +261,12 @@ const AddMember = () => {
                         <SelectItem value="sports dir.">Sports Dir.</SelectItem>
                         <SelectItem value="welfare dir.">Welfare Dir.</SelectItem>
                         <SelectItem value="p.r.o">P.R.O</SelectItem>
+                        <SelectItem value="speaker">Speaker</SelectItem>
+                        <SelectItem value="dep. speaker">Dep.Speaker</SelectItem>
+                        <SelectItem value="senator">Senator</SelectItem>
+                        <SelectItem value="chief whip">Chief Whip</SelectItem>
+                        <SelectItem value="sarge at arm">Sarge at arm</SelectItem>
+                        <SelectItem value="honorable">Honorable</SelectItem>
                       </SelectGroup>
                     </SelectContent>
                   </Select>
