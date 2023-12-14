@@ -39,6 +39,10 @@ const CgpaCalculatorForm = () => {
         return sum;
     }
 
+    const roundToTwoDecimalPlaces = (num: number): number => {
+        return Math.round(num * 100) / 100;
+    }
+
     const handleAddCourse = (e: any) => {
         e.preventDefault()
 
@@ -50,10 +54,6 @@ const CgpaCalculatorForm = () => {
         addTableRow()
 
         clearInputFields()
-    }
-
-    const roundToTwoDecimalPlaces = (num: number): number => {
-        return Math.round(num * 100) / 100;
     }
 
     const handleCgpaCalculation = (e: any) => {
@@ -126,7 +126,7 @@ const CgpaCalculatorForm = () => {
                         </tr>
                     </tfoot>
                 </table>
-                {tableData.length > 0 && <Button className='w-52 mt-5 btn-gradient rounded ' onClick={handleCgpaCalculation}>Calculate CGPA</Button>}
+                {tableData.length > 0 && <div></div>}
 
             </div>
         </form>
