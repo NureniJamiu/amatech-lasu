@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 
 const gradePoints: number[] = []
 const creditUnits: number[] = []
+const totalCreditPoint: number[] = []
 
 const CgpaCalculatorForm = () => {
     const [courseCode, setCourseCode] = useState("")
@@ -13,8 +14,39 @@ const CgpaCalculatorForm = () => {
     const [creditUnit, setCreditUnit] = useState("");
 
     const [gpa, setGpa] = useState(0);
+    const [result, setResult] = useState("");
 
     const [tableData, setTableData] = useState<Array<Array<string>>>([]);
+
+    const determineStudentClass = (calcGrade: number): string => {
+        let resultClass: string = "";
+
+        console.log("calcGrade", calcGrade);
+
+        if (calcGrade >= 4.50 && calcGrade <= 5.00) {
+            return resultClass = "You're a 'First Class' Student";
+        } else if (calcGrade >= 3.50 && calcGrade < 4.50) {
+            return resultClass = "You're a 'Second Class Upper' Student"
+        } else if (calcGrade >= 2.40 && calcGrade < 3.50) {
+            return resultClass = "You're a 'Second Class Lower' Student"
+        } else if (calcGrade >= 1.50 && calcGrade < 2.40) {
+            return resultClass = "You're a 'Third Class' Student"
+        } else {
+            return resultClass = "You're below the 'Third class' category"
+        }
+
+        // if (calcGrade < 1.50) {
+        //     return resultClass = "Pass";
+        // } else if (calcGrade >= 1.50) {
+        //     return resultClass = "Third class"
+        // } else if (calcGrade >= 2.40) {
+        //     return resultClass = "Second class lower"
+        // } else if (calcGrade >= 3.50) {
+        //     return resultClass = "Second class upper"
+        // } else {
+        //     return resultClass = "First class"
+        // }
+    }
 
     const clearInputFields = () => {
         setCourseCode("")
@@ -58,12 +90,20 @@ const CgpaCalculatorForm = () => {
 
     const handleCgpaCalculation = (e: any) => {
         e.preventDefault()
+
+        for (let i = 0; i < creditUnits.length; i++) {
+            totalCreditPoint.push(creditUnits[i] * gradePoints[i])
+        }
+
+        const sumOfTotalCreditPoint = sumArrayItems(totalCreditPoint)
+
         const totalCreditUnits = sumArrayItems(creditUnits)
-        const totalGradePoints = sumArrayItems(gradePoints)
 
-        const total = totalGradePoints / totalCreditUnits
+        const total = sumOfTotalCreditPoint / totalCreditUnits
 
-        setGpa(roundToTwoDecimalPlaces(total))
+        setGpa(roundToTwoDecimalPlaces(parseFloat(total.toFixed(2))))
+
+        setResult(determineStudentClass(roundToTwoDecimalPlaces(parseFloat(total.toFixed(2)))));
     }
 
     const resetCalculator = (e: any) => {
@@ -73,6 +113,7 @@ const CgpaCalculatorForm = () => {
         setCourseCode("");
         setGradePoint("");
         setCreditUnit("");
+        setResult("");
         setGpa(0);
     }
 
@@ -136,10 +177,11 @@ const CgpaCalculatorForm = () => {
             </div>
             <div>
                 {gpa != 0 &&
-                    <div className="text-center font-semibold text-lg py-3">
+                    <div className="text-center font-semibold text-lg pt-3">
                         Total: {gpa}
                     </div>
                 }
+                {result && <div className="text-xs italic text-center">({result})</div>}
             </div>
 
             <div>
