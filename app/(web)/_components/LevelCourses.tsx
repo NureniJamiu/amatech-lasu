@@ -4,12 +4,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 const tabStyle = `'bg-gray-400 px-2 text-sm md:text-base py-3 leading-none select-none first:rounded-tl-md last:rounded-tr-md hover:text-green-500 data-[state=active]:text-green-600 data-[state=active]:border-b data-[state=active]:border-b-green-600 cursor-pointer`
 
-// Type Testing = { courseCode: string, courseTitle: string, creditUnit: string; status: string; }
-
 const LevelCourses = (
-    { level, firstSemester, secondSemester }: { level: string, firstSemester: ReactNode, secondSemester: ReactNode },
+    { level, firstSemester, secondSemester }: { level: string, firstSemester: ReactNode[], secondSemester: ReactNode[] },
 ) => {
-    console.log("FIRST_SEMESTER", firstSemester)
     return <div className="mx-2 md:mx-14 lg:mx-24 mt-5">
         <p className="text-2xl text-green-600 font-semibold py-2 mb-1 mx-5 text-left md:text-center">{level} Level</p>
         <div className="bg-slate-200 rounded min-h-[120px] p-5 overflow-x-auto">
