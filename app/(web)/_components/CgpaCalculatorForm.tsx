@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 
 const gradePoints: number[] = []
 const creditUnits: number[] = []
-// const gpa: number[] = []
 
 const CgpaCalculatorForm = () => {
     const [courseCode, setCourseCode] = useState("")
@@ -46,10 +45,11 @@ const CgpaCalculatorForm = () => {
     const handleAddCourse = (e: any) => {
         e.preventDefault()
 
+        if (!gradePoint || !creditUnit || !courseCode) return;
+
+        // ! Change both lines below to useState.
         gradePoints.push(+gradePoint)
         creditUnits.push(+creditUnit)
-
-        console.log(gradePoints, creditUnits)
 
         addTableRow()
 
@@ -62,18 +62,27 @@ const CgpaCalculatorForm = () => {
         const totalGradePoints = sumArrayItems(gradePoints)
 
         const total = totalGradePoints / totalCreditUnits
-        // gpa.push(total)
 
         setGpa(roundToTwoDecimalPlaces(total))
     }
 
+    const resetCalculator = (e: any) => {
+        e.preventDefault()
+
+        setTableData([]);
+        setCourseCode("");
+        setGradePoint("");
+        setCreditUnit("");
+        setGpa(0);
+    }
+
     return (
         <form>
-            <div className="flex w-full justify-between mb-5">
-                <h4 className="text-3xl text-green-800 font-medium">Calculate CGPA</h4>
-                <Button className='btn-gradient rounded' onClick={handleAddCourse}>Add course</Button>
+            <div className="flex w-full items-center justify-between mb-5">
+                <h4 className="text-2xl md:text-3xl text-green-800 font-medium">Calculate CGPA</h4>
+                <Button className='hidden md:flex btn-gradient rounded' onClick={handleAddCourse}>Add course</Button>
             </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+            <div className="grid md:grid-cols-3 gap-3 mb-5">
                 <Input
                     className="rounded" placeholder="Course code. e.g: MTE102"
                     value={courseCode}
@@ -93,6 +102,10 @@ const CgpaCalculatorForm = () => {
                     value={gradePoint}
                     onChange={(e) => setGradePoint(e.target.value)}
                 />
+                <Button className='md:hidden btn-gradient rounded' onClick={handleAddCourse}>Add course</Button>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 overflow-auto">
 
                 <table className="col-span-3 w-full">
                     <thead>
@@ -118,16 +131,29 @@ const CgpaCalculatorForm = () => {
                             </tr>
                         ))}
                     </tbody>
-                    <tfoot>
-                        <tr className="col-span-3 mt-5">
-                            <td>
-                                Total: {gpa}
-                            </td>
-                        </tr>
-                    </tfoot>
                 </table>
-                {tableData.length > 0 && <div></div>}
 
+            </div>
+            <div>
+                {gpa != 0 &&
+                    <div className="text-center font-semibold text-lg py-3">
+                        Total: {gpa}
+                    </div>
+                }
+            </div>
+
+            <div>
+                {tableData.length > 0 ? <div className="flex flex-col-reverse md:flex-row items-center gap-1 md:gap-5 mt-3">
+                    <Button
+                        onClick={handleCgpaCalculation}
+                        className="btn-gradient w-full md:w-2/3 rounded"
+                    >Calculate GPA</Button>
+                    <Button
+                        onClick={resetCalculator}
+                        className="bg-yellow-300 w-full md:w-1/3 rounded hover:bg-yellow-400"
+                    >Reset</Button>
+
+                </div> : <div className="text-center text-gray-500 italic mt-3">Input a value to be able to perform operation</div>}
             </div>
         </form>
     );

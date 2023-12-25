@@ -6,10 +6,10 @@ const Page = () => {
     return (
         <section>
             <TitleHero title="CGPA Calculator" />
-            <div className="px-8 md:px-24">
+            <div className="px-3 md:px-12 lg:px-24">
                 <div className="my-5">
                     <div className="my-5">
-                        <ul className="flex justify-around gap-3">
+                        <ul className="hidden lg:flex lg:items-center lg:justify-center gap-3">
                             <li><b>C.U :</b> Credit Units ||</li>
                             <li><b>T.C.U :</b> Total Credit Units ||</li>
                             <li><b>G.P : </b>Grade Points ||</li>
@@ -19,7 +19,6 @@ const Page = () => {
                         </ul>
                     </div>
                     <div className="bg-slate-200 rounded min-h-[120px] p-5">
-
                         <CgpaCalculatorForm />
                     </div>
 
