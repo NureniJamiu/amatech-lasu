@@ -3,8 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-// import { FaLinkedin, FaTwitter } from "react-icons/fa";
-
 const MemberCard = ({ data }: any) => {
     return (
         <div className="relative shadow bg-white rounded-lg p-5 hover:scale-105 transition-all duration-200 ease-in-out">

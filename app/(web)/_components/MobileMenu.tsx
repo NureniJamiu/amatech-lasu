@@ -18,15 +18,9 @@ import {
 } from "@/components/ui/accordion"
 
 import { Menu } from "lucide-react";
-// import { navLinks } from "../_mock";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useUser } from "@clerk/nextjs";
-
-const navLinks = [
-  { title: "Test", url: "test" },
-  { title: "Test1", url: "test1" },
-]
 
 const listStyle = `py-2 hover:text-blue-500 hover:underline`
 
@@ -42,15 +36,6 @@ const MobileMenu = () => {
           <SheetTitle></SheetTitle>
           <SheetDescription className=""></SheetDescription>
         </SheetHeader>
-        {/* <div>
-          {navLinks.map(({ title, url }) => (
-            <p key={title} className="py-2 text-lg ">
-              <Link href={url} className="capitalize hover:text-green-700">
-                {title}
-              </Link>
-            </p>
-          ))}
-        </div> */}
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
             <AccordionTrigger>Students</AccordionTrigger>
