@@ -12,7 +12,7 @@ const LevelCourses = (
     console.log("FIRST_SEMESTER", firstSemester)
     return <div className="mx-2 md:mx-14 lg:mx-24 mt-5">
         <p className="text-2xl text-green-600 font-semibold py-2 mb-1 mx-5 text-left md:text-center">{level} Level</p>
-        <div className="bg-slate-200 rounded min-h-[120px] p-5">
+        <div className="bg-slate-200 rounded min-h-[120px] p-5 overflow-x-auto">
             <Tabs defaultValue="firstSemester" className="">
                 <TabsList className='space-x-2 w-full'>
                     <TabsTrigger value="firstSemester" className={`${tabStyle}`}>1st Semester</TabsTrigger>
