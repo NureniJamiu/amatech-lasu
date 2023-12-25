@@ -28,26 +28,28 @@ export const components: { title: string; href: string; description: string }[] 
 export const sectionContents = [
     {
         title: "Our Mission",
-        bodyText: "Empowering Management Technology students through a comprehensive and dynamic educational experience. We're your one-stop solution for course outlines, learning materials, CGPA calculations, school news, and industry insights.",
-        btnText: "Learn more",
+        bodyText: "Our mission is: (i) to nurture and develop quality professional manpower with capacity to operate in a dynamic world. (ii) to develop a public oriented professional human capital relevant to national and international organizations. (iii) to develop students capacity to serve as trained change agents in private and public organizations. (iv) to facilitate th acquisition of knowledge through research in the area of management.",
         image: missionImage
     },
     {
         title: "Learning HUB",
         bodyText: "Explore our Expert-curated courses, including learning materials such as textbooks, notes, and handouts. Enhance understanding with immersive experiences and reinforce knowledge. Your go-to resource for comprehensive learning.",
         btnText: "Visit now",
+        href: "/academics/learning-hub",
         image: classroomImage
     },
     {
         title: "Course Outline",
         bodyText: "Our commitment to LASU Management Technology students includes providing a carefully curated collection of course outlines. These materials are specifically designed to empower students with the information they need to make well-informed decisions about their academic journey.",
         btnText: "View Outline",
+        href: "/academics/all-offered-courses",
         image: courseOutlineImage
     },
     {
         title: "CGPA Calculator",
         bodyText: "Track your academic progress and plan your journey at the department of Management Technology, LASU. Your CGPA is key, reflecting your academic performance and commitment to excellence.",
         btnText: "Try it now",
+        href: "/academics/cgpa-calculator",
         image: calculatorImage
     }
 ]
