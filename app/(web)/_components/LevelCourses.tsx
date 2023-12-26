@@ -4,8 +4,21 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 const tabStyle = `'bg-gray-400 px-2 text-sm md:text-base py-3 leading-none select-none first:rounded-tl-md last:rounded-tr-md hover:text-green-500 data-[state=active]:text-green-600 data-[state=active]:border-b data-[state=active]:border-b-green-600 cursor-pointer`
 
+interface Course {
+    courseCode: string;
+    courseTitle: string;
+    creditUnit: string;
+    status: string;
+}
+
+interface LevelCoursesProps {
+    level: string;
+    firstSemester: Course[];
+    secondSemester?: Course[];
+}
+
 const LevelCourses = (
-    { level, firstSemester, secondSemester }: { level: string, firstSemester: ReactNode[], secondSemester: ReactNode[] },
+    { level, firstSemester, secondSemester }: LevelCoursesProps
 ) => {
     return <div className="mx-2 md:mx-14 lg:mx-24 mt-5">
         <p className="text-2xl text-green-600 font-semibold py-2 mb-1 mx-5 text-left md:text-center">{level} Level</p>

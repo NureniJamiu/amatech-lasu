@@ -50,7 +50,6 @@ const Page = () => {
             <LevelCourses
                 level="400"
                 firstSemester={firstSemester400}
-            // secondSemester={secondSemester300}
             />
 
             {/* 500 LEVEL  */}
