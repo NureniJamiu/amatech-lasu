@@ -15,6 +15,8 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 
   const [selectedNavItem, setSelectedNavItem] = useState("default");
 
+  console.log("USER_AUTH", user)
+
 
   return (
     <section className="h-screen">
@@ -37,20 +39,12 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
               <span className="text-gray-200 uppercase font-semibold px-3">
                 Welcome aboard, <br></br>
                 <span className="text-2xl md:text-3xl font-bold">
-                  comrade {user?.firstName}
+                  Esteemed comrade
+                  {/* {user?.firstName} */}
                 </span>
               </span>
-              <div className="flex items-center gap-4">
-                <form className="hidden md:block">
-                  <input
-                    type="search"
-                    id="search"
-                    name="search"
-                    placeholder="Search..."
-                    className="w-60 px-3 py-1 border border-gray-300 rounded focus:outline-none focus:ring-green-500 focus:border-green-500 shadow-md"
-                    disabled
-                  />
-                </form>
+              <div className="flex items-center gap-2">
+                <span className="hidden md:block text-gray-100 bg-green-500 bg-opacity-30 px-3 py-1 rounded">{user?.primaryEmailAddress?.emailAddress}</span>
                 <div className="absolute top-7 right-5 lg:static">
                   <UserButton afterSignOutUrl="/" />
                 </div>
