@@ -7,7 +7,6 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper/modules";
 import Image from "next/image";
-import Link from "next/link";
 
 const LecturerSwiper = ({ lecturers }: any) => {
     return (
