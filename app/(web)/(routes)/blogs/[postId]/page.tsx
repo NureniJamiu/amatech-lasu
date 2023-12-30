@@ -59,17 +59,17 @@ const SingleBlog = () => {
         <section className="flex justify-center items-center">
             <div className="w-full">
                 <div className="relative h-64 bg-green-600">
-                    <Image src={post?.image} alt="" fill className="absolute object-cover object-top" />
+                    <Image src={post?.image} alt="" fill className="absolute object-cover" />
                     <div className="absolute bg-black top-0 left-0 right-0 w-full h-full bg-opacity-70"></div>
                     <div className="absolute w-full h-full flex items-center justify-center text-center mb-8">
                         <div className="text-gray-300">
-                            <h2 className=" font-bold lg:text-6xl text-center mb-2 capitalize lg:px-20">
+                            <h2 className=" font-bold text-3xl md:text-4xl lg:text-6xl text-center mb-2 capitalize px-5 md:px-20 lg:w-11/12 mx-auto">
                                 {post?.title}
                             </h2>
                             <small>
                                 {moment(post?.createdAt).format("LL")} by{" "}
-                                <Link href="#" className="underline text-green-700">
-                                    {post?.author}
+                                <Link href="#" className="underline text-green-600 font-bold">
+                                    {post.author ? `Comrade ${post.author}` : "the administration P.R.O"}
                                 </Link>
                             </small>
                         </div>
@@ -80,8 +80,8 @@ const SingleBlog = () => {
                         <div dangerouslySetInnerHTML={{ __html: post?.content }}></div>
                         <div className="mt-12">
                             <p>Comr. Nureni Jamiu (Penocrat),</p>
-                            <p>21st Public Relations Officer (P.R.O),</p>
-                            <p>Amatech Lasu, {"'"}23.</p>
+                            <p>Public Relations Officer (P.R.O),</p>
+                            <p>Amatech Lasu 21st Administration, {"'"}23.</p>
                         </div>
                     </div>
                 </div>
