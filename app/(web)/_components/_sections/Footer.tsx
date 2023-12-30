@@ -6,11 +6,11 @@ import { ArrowUp, Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
 
 const Footer = () => {
     const links = [
-        { title: "Sponsorship", slug: "sponsorship" },
-        { title: "Faculty Lecturers", slug: "lecturers" },
-        { title: "Milestone", slug: "milestone" },
-        { title: "Contact us", slug: "contact-us" },
-        { title: "Excos", slug: "sec-members" },
+        { title: "Sponsorship", slug: "sponsorship" }, // redirect to gmail
+        { title: "Admission requirement", slug: "/academics/admission-requirement" },
+        { title: "All courses", slug: "/academics/all-offered-courses" },
+        { title: "Contact us", slug: "contact-us" }, // redirect to gmail
+        { title: "Excos", slug: "/students/executive-members" },
     ];
     return (
         <footer className="relative flex justify-center items-center bg-[#252525] text-[#999999] text-sm px-8 py-3">
@@ -38,22 +38,13 @@ const Footer = () => {
                         <Linkedin />
                     </Link>
                 </div>
-                <Link href="/" className="mx-auto rounded-xl ">
-                    <Image
-                        src="/logo.jpg"
-                        alt="Logo"
-                        width={80}
-                        height={80}
-                        className="rounded-full opacity-75"
-                    />
-                </Link>
                 <div className="mx-auto text-center">
                     © 2022 - Association of Management Technology Students, LASU
                 </div>
             </div>
             <Link
                 href="#nav"
-                className="absolute right-12 bottom-48 w-12 h-12 flex justify-center items-center bg-gray-300 text-gray-700 rounded-full text-4xl"
+                className="absolute right-5 md:right-12 bottom-80 md:bottom-24 w-12 h-12 flex justify-center items-center bg-gray-300 text-gray-700 rounded-full text-4xl animate-bounce"
             >
                 <ArrowUp />
             </Link>
