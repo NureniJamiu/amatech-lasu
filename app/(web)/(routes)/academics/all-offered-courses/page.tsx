@@ -18,10 +18,8 @@ import {
 
 
 const Page = () => {
-    // console.log("FIRST_SEMESTER", firstSemester100)
     return <section>
         <TitleHero title="All courses" />
-
         <div className="py-5">
             {/* 100 LEVEL  */}
             <LevelCourses
@@ -30,14 +28,12 @@ const Page = () => {
                 secondSemester={secondSemester100}
             />
 
-
             {/* 200 LEVEL  */}
             <LevelCourses
                 level="200"
                 firstSemester={firstSemester200}
                 secondSemester={secondSemester200}
             />
-
 
             {/* 300 LEVEL  */}
             <LevelCourses
@@ -58,7 +54,6 @@ const Page = () => {
                 firstSemester={firstSemester500}
                 secondSemester={secondSemester500}
             />
-
         </div>
 
 

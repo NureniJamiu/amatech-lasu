@@ -1,27 +1,35 @@
 "use client";
 
 import { useState, useEffect } from "react";
-// import BlogSectionCard from "./BlogSectionCard";
-import moment from "moment";
 import axios from "axios";
-import LatestNewsCard from "./LatestNewsCard";
 import BlogPageCard from "../BlogPageCard";
+import { Loader } from "lucide-react";
 
 const LatestNews = () => {
     const [posts, setPosts] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         async function fetchData() {
-            const response = await axios.get("/api/posts");
-            // console.log(response)
-            if (response?.data?.status === 200) {
-                setPosts(response?.data?.posts);
-            } else {
-                setPosts([])
+            setIsLoading(true)
+            try {
+                const { data } = await axios.get(`/api/posts`);
+                setPosts(data.posts);
+                setIsLoading(false)
+            } catch (error) {
+                setIsLoading(false)
             }
         }
         fetchData();
-    }, [posts]);
+    }, []);
+
+    if (!posts) {
+        return (
+            <div className="flex items-center justify-center h-screen">
+                <p>Error loading post. Please try again.</p>
+            </div>
+        );
+    }
     return (
         <section className="flex flex-col justify-center items-center bg-[#fafafa] px-8 md:px-24 py-5">
             {/* <BlogCard /> */}
@@ -32,17 +40,23 @@ const LatestNews = () => {
                 <span className="italic">Updates from the Office of the P.R.O</span>
             </div>
 
-            <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-                {posts && posts.map((post, i) => (
-                    <BlogPageCard
-                        key={i}
-                        post={post}
-                    />
-                ))}
-            </div>
-            <button className="bg-green-600 px-3 py-2 mt-5 rounded-lg text-gray-100 hover:translate-y-1 transition-all duration-100 ease-in-out">
-                More Posts &gt;
-            </button>
+            {posts && !isLoading ? <div>
+                <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+                    {posts.map((post, i) => (
+                        <BlogPageCard
+                            key={i}
+                            post={post}
+                        />
+                    ))}
+                </div>
+                <div className="text-center">
+                    <a href="/blogs" className="bg-green-600 inline-block rounded mt-5 px-5 py-2 cursor-pointer text-gray-100 hover:bg-green-500">
+                        View all posts
+                    </a>
+                </div>
+            </div> : <div className="flex items-center justify-center h-96">
+                <Loader size={60} className="animate-spin" color="gray" />
+            </div>}
         </section>
     );
 };

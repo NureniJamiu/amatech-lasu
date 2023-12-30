@@ -4,27 +4,39 @@ import axios from "axios";
 import TitleHero from "../../_components/TitleHero";
 import BlogPageCard from "../../_components/BlogPageCard";
 import { useEffect, useState } from "react";
+import { Loader } from "lucide-react";
 
 
 const Blogs = () => {
     const [posts, setPosts] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
+
     useEffect(() => {
         async function fetchData() {
-            const response = await axios.get("/api/posts");
-            // console.log(response)
-            if (response?.data?.status === 200) {
-                setPosts(response?.data?.posts);
-            } else {
-                setPosts([])
+            setIsLoading(true)
+            try {
+                const { data } = await axios.get(`/api/posts`);
+                setPosts(data.posts);
+                setIsLoading(false)
+            } catch (error) {
+                setIsLoading(false)
             }
         }
         fetchData();
-    }, [posts]);
+    }, []);
+
+    if (!posts) {
+        return (
+            <div className="flex items-center justify-center h-screen">
+                <p>Error loading post. Please try again.</p>
+            </div>
+        );
+    }
 
     return (
         <section>
             <TitleHero title="Blog Posts" />
-            <div className="px-8 md:px-24">
+            {posts && !isLoading ? <div className="px-8 md:px-24">
                 <div className="flex gap-3 items-center mb-12 mt-5 py-8 md:py-8 border-b text-sm md:text-[15px]">
                     <span className="text-gray-600">Category:</span>
                     <select className="w-28 text-center text-green-600 border rounded py-2">
@@ -44,7 +56,10 @@ const Blogs = () => {
                         />
                     ))}
                 </div>
+            </div> : <div className="flex items-center justify-center h-[calc(100vh-200px)]">
+                <Loader size={60} className="animate-spin" color="gray" />
             </div>
+            }
         </section>
     );
 };
