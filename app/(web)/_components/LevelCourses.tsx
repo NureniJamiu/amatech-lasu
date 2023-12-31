@@ -29,7 +29,7 @@ const LevelCourses = (
                     <TabsTrigger value="secondSemester" className={`${tabStyle}`}>2nd Semester</TabsTrigger>
                 </TabsList>
                 <TabsContent value="firstSemester" className="overflow-auto">
-                    <table className="w-full ">
+                    <table className="w-full text-sm md:text-base">
                         <thead>
                             <tr className="text-left bg-gray-100 rounded-2xl">
                                 <th className="px-2 lg:px-5 py-3">Course Code</th>
@@ -53,7 +53,7 @@ const LevelCourses = (
                     </table>
                 </TabsContent>
                 <TabsContent value="secondSemester" className="overflow-auto">
-                    <table className="w-full">
+                    <table className="w-full text-sm md:text-base">
                         <thead>
                             <tr className="text-left bg-gray-100 rounded-2xl">
                                 <th className="px-2 lg:px-5 py-3">Course Code</th>
