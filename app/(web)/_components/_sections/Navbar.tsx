@@ -21,7 +21,6 @@ import { Button } from '@/components/ui/button'
 import { useUser } from '@clerk/nextjs'
 import { cn } from "@/lib/utils"
 
-// const textGradient = `bg-gradient-to-r from-green-700 to-[#86b550] text-transparent bg-clip-text`
 
 const ListItem = React.forwardRef<
     React.ElementRef<"a">,
@@ -91,13 +90,13 @@ const Navbar = () => {
                                 <NavigationMenuTrigger>Academics</NavigationMenuTrigger>
                                 <NavigationMenuContent className=''>
                                     <ul className="grid w-[300px] gap-3 p-4 md:w-[400px] md:grid-cols-2 lg:w-[500px] bg-white rounded-xl bg-opacity-80">
-                                        {components.map((component) => (
+                                        {components.map((component: any) => (
                                             <ListItem
-                                                key={component.title}
-                                                title={component.title}
-                                                href={component.href}
+                                                key={component?.title}
+                                                title={component?.title}
+                                                href={component?.href}
                                             >
-                                                {component.description}
+                                                {component?.description}
                                             </ListItem>
                                         ))}
                                     </ul>
