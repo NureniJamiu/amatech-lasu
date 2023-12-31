@@ -58,9 +58,9 @@ const Navbar = () => {
             <NavigationMenuList className='md:px-10 lg:px-20 gap-5 w-full '>
                 <div className='flex items-center justify-between w-full max-w-6xl'>
                     <NavigationMenuItem className='flex items-center gap-10'>
-                        <NavigationMenuItem>
+                        <NavigationMenuItem className='cursor-pointer'>
                             <div className='flex items-center gap-1'>
-                                <Link href="https://www.lasu.edu.ng" target='__blank' legacyBehavior passHref>
+                                <Link href="https://www.lasu.edu.ng" target='__blank' legacyBehavior passHref >
                                     <Image src="/lasu.png" alt='amatech logo' width={50} height={50} />
                                 </Link>
                                 <Link href="/" legacyBehavior passHref>

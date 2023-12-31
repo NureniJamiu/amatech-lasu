@@ -54,12 +54,13 @@ const MobileMenu = () => {
                 <li className={listStyle}><a href="/academics/learning-hub">Learning HUB</a></li>
                 <li className={listStyle}><a href="/academics/all-offered-courses">All Courses</a></li>
                 <li className={listStyle}><a href="/academics/cgpa-calculator">CGPA Calculator</a></li>
+                <li className={listStyle}><a href="/academics/admission-requirement">Admission Requirement</a></li>
               </ul>
             </AccordionContent>
           </AccordionItem>
         </Accordion>
         <ul className="font-medium">
-          <li className={`${listStyle} py-4 border-b`}><a href="/lecturers"><a></a>Lecturers</a></li>
+          <li className={`${listStyle} py-4 border-b`}><a href="/lecturers">Lecturers</a></li>
           <li className={`${listStyle} py-4 border-b`}><a href="/blogs">Blogs</a></li>
         </ul>
 

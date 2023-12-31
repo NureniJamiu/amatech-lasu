@@ -17,6 +17,12 @@ export const components: { title: string; href: string; description: string }[] 
             "A collection of all courses across all levels in the department.",
     },
     {
+        title: "Admission Requirement",
+        href: "/academics/admission-requirement",
+        description:
+            "Admission into the university is in two categories.",
+    },
+    {
         title: "CGPA Calculator",
         href: "/academics/cgpa-calculator",
         description:
