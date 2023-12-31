@@ -21,55 +21,55 @@ const LevelCourses = (
     { level, firstSemester, secondSemester }: LevelCoursesProps
 ) => {
     return <div className="mx-2 md:mx-14 lg:mx-24 mt-5">
-        <p className="text-2xl text-green-600 font-semibold py-2 mb-1 mx-5 text-left md:text-center">{level} Level</p>
-        <div className="bg-slate-200 rounded min-h-[120px] p-5 overflow-x-auto">
+        <p className="text-2xl text-green-600 font-semibold py-2 mb-1 mx-5 text-center">{level} Level</p>
+        <div className="bg-slate-200 rounded min-h-[120px] md:p-5 overflow-x-auto">
             <Tabs defaultValue="firstSemester" className="">
                 <TabsList className='space-x-2 w-full'>
                     <TabsTrigger value="firstSemester" className={`${tabStyle}`}>1st Semester</TabsTrigger>
                     <TabsTrigger value="secondSemester" className={`${tabStyle}`}>2nd Semester</TabsTrigger>
                 </TabsList>
-                <TabsContent value="firstSemester">
-                    <table className="w-full overflow-auto">
+                <TabsContent value="firstSemester" className="overflow-auto">
+                    <table className="w-full ">
                         <thead>
                             <tr className="text-left bg-gray-100 rounded-2xl">
-                                <th className="px-5 py-3">Course Code</th>
-                                <th className="px-5 py-3">Course Title</th>
-                                <th className="px-5 py-3">Credit Unit</th>
-                                <th className="px-5 py-3">Status </th>
+                                <th className="px-2 lg:px-5 py-3">Course Code</th>
+                                <th className="px-2 lg:px-5 py-3">Course Title</th>
+                                <th className="px-2 lg:px-5 py-3">Credit Unit</th>
+                                <th className="px-2 lg:px-5 py-3">Status </th>
                             </tr>
                         </thead>
-                        <tbody className="px-5">
+                        <tbody className="px-2 lg:px-5">
                             {
                                 firstSemester?.map((course: any) => (
                                     <tr key={course?.courseCode} className="even:bg-gray-100" >
-                                        <td className="px-5 py-1 uppercase">{course?.courseCode}</td>
-                                        <td className="px-5 py-1">{course?.courseTitle}</td>
-                                        <td className="px-5 py-1">{course?.creditUnit}</td>
-                                        <td className="px-5 py-1">{course?.status}</td>
+                                        <td className="px-2 lg:px-5 py-1 uppercase">{course?.courseCode}</td>
+                                        <td className="px-2 lg:px-5 py-1">{course?.courseTitle}</td>
+                                        <td className="px-2 lg:px-5 py-1">{course?.creditUnit}</td>
+                                        <td className="px-2 lg:px-5 py-1">{course?.status}</td>
                                     </tr>
                                 ))
                             }
                         </tbody>
                     </table>
                 </TabsContent>
-                <TabsContent value="secondSemester">
+                <TabsContent value="secondSemester" className="overflow-auto">
                     <table className="w-full">
                         <thead>
                             <tr className="text-left bg-gray-100 rounded-2xl">
-                                <th className="px-5 py-3">Course Code</th>
-                                <th className="px-5 py-3">Course Title</th>
-                                <th className="px-5 py-3">Credit Unit</th>
-                                <th className="px-5 py-3">Status</th>
+                                <th className="px-2 lg:px-5 py-3">Course Code</th>
+                                <th className="px-2 lg:px-5 py-3">Course Title</th>
+                                <th className="px-2 lg:px-5 py-3">Credit Unit</th>
+                                <th className="px-2 lg:px-5 py-3">Status</th>
                             </tr>
                         </thead>
-                        <tbody className="px-5">
+                        <tbody className="px-2 lg:px-5">
                             {
                                 secondSemester?.map((course: any) => (
                                     <tr key={course.courseCode} className="even:bg-gray-100" >
-                                        <td className="px-5 py-1 uppercase">{course?.courseCode}</td>
-                                        <td className="px-5 py-1">{course?.courseTitle}</td>
-                                        <td className="px-5 py-1">{course?.creditUnit}</td>
-                                        <td className="px-5 py-1">{course?.status}</td>
+                                        <td className="px-2 lg:px-5 py-1 uppercase">{course?.courseCode}</td>
+                                        <td className="px-2 lg:px-5 py-1">{course?.courseTitle}</td>
+                                        <td className="px-2 lg:px-5 py-1">{course?.creditUnit}</td>
+                                        <td className="px-2 lg:px-5 py-1">{course?.status}</td>
                                     </tr>
                                 ))
                             }

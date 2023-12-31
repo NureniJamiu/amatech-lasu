@@ -20,7 +20,19 @@ import {
 const Page = () => {
     return <section>
         <TitleHero title="All courses" />
+
         <div className="py-5">
+            <div className="text-center px-8 md:px-24 pt-8">
+                <h2 className="text-3xl">
+                    A Reference To All Of{" "}
+                    <span className="text-[#227e5f] font-semibold">
+                        Our Courses
+                    </span>
+                </h2>
+                <span className="italic">
+                    A comprehensive list of all the courses offered across the dept.
+                </span>
+            </div>
             {/* 100 LEVEL  */}
             <LevelCourses
                 level="100"
