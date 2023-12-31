@@ -29,7 +29,7 @@ const Page = () => {
                         Our Courses
                     </span>
                 </h2>
-                <span className="italic">
+                <span className="text-sm md:text-base italic">
                     A comprehensive list of all the courses offered across the dept.
                 </span>
             </div>
