@@ -5,7 +5,7 @@ import TitleHero from "@/app/(web)/_components/TitleHero";
 const Page = () => {
     return <section>
         <TitleHero title="Admission Requirement" />
-        <div className="px-8 md:px-24 py-10">
+        <div className="px-5 md:px-24 py-10">
             <p> Admission into the department is in two categories:</p> <br />
             <p>
                 <span className="font-bold text-xl text-green-600">i. Unified Tertiary Matriculation Examination (UTME):</span> The UTME admits prospective students into the 100 Level of various degree programmes in the University.
