@@ -44,7 +44,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                 </span>
               </span>
               <div className="flex items-center gap-2">
-                <span className="hidden md:block text-gray-100 bg-green-500 bg-opacity-30 px-3 py-1 rounded">{user?.primaryEmailAddress?.emailAddress}</span>
+                <span className="hidden md:block text-gray-100 px-1 py-1 rounded cursor-pointer">{user?.primaryEmailAddress?.emailAddress}</span>
                 <div className="absolute top-7 right-5 lg:static">
                   <UserButton afterSignOutUrl="/" />
                 </div>

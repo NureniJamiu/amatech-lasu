@@ -1,9 +1,31 @@
-import { ArrowRightIcon, User } from "lucide-react";
-import React from "react";
+"use client"
 
-// import { BsPersonFill } from "react-icons/bs";
+import axios from "axios";
+import { ArrowRightIcon, User } from "lucide-react";
+import React, { useEffect, useState } from "react";
+
+interface CountData {
+    posts?: number;
+    lecturers?: number;
+    executiveMembers?: number;
+    legislativeMembers?: number;
+}
 
 const DashboardLandingPage = () => {
+    const [count, setCount] = useState<CountData>({});
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const countResponse = await axios.get("/api/count");
+                setCount(countResponse?.data?.count);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
     return (
         <div className="flex flex-col gap-8 mt-3">
             <div className="w-full border bg-white rounded-xl px-5 py-3 ">
@@ -35,7 +57,7 @@ const DashboardLandingPage = () => {
                     <div className="absolute -top-8 -left-10 w-32 h-32 rounded-full bg-green-400"></div>
                     <div className="absolute -bottom-3 -right-8 w-32 h-32 rounded-full bg-green-400"></div>
                     <div className="p-5 text-3xl text-white font-semibold z-10">
-                        <p className="text-5xl">9</p>
+                        <p className="text-5xl">{count?.posts}</p>
                         <p>All Posts</p>
                     </div>
                 </div>
@@ -45,8 +67,8 @@ const DashboardLandingPage = () => {
                     <div className="absolute -top-8 -left-10 w-32 h-32 rounded-full bg-emerald-400"></div>
                     <div className="absolute -bottom-3 -right-8 w-32 h-32 rounded-full bg-emerald-400"></div>
                     <div className="p-5 text-3xl text-white font-semibold z-10">
-                        <p className="text-5xl">0</p>
-                        <p>Draft</p>
+                        <p className="text-5xl">{count?.executiveMembers}</p>
+                        <p>Executive Members</p>
                     </div>
                 </div>
                 {/* CARD END  */}
@@ -55,8 +77,8 @@ const DashboardLandingPage = () => {
                     <div className="absolute -top-8 -left-10 w-32 h-32 rounded-full bg-slate-400"></div>
                     <div className="absolute -bottom-3 -right-8 w-32 h-32 rounded-full bg-slate-400"></div>
                     <div className="p-5 text-3xl text-white font-semibold z-10">
-                        <p className="text-5xl">7</p>
-                        <p>Categories</p>
+                        <p className="text-5xl">{count?.legislativeMembers}</p>
+                        <p>Legislative Members</p>
                     </div>
                 </div>
                 {/* CARD END  */}
@@ -65,8 +87,8 @@ const DashboardLandingPage = () => {
                     <div className="absolute -top-8 -left-10 w-32 h-32 rounded-full bg-zinc-300"></div>
                     <div className="absolute -bottom-3 -right-8 w-32 h-32 rounded-full bg-zinc-300"></div>
                     <div className="p-5 text-3xl text-white font-semibold z-10">
-                        <p className="text-5xl">27</p>
-                        <p>Site Visits</p>
+                        <p className="text-5xl">{count?.lecturers}</p>
+                        <p>Lecturers</p>
                     </div>
                 </div>
             </div>
