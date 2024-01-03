@@ -13,10 +13,10 @@ export async function GET(req: NextRequest) {
         let limit = parseInt(req.nextUrl.searchParams.get("limit") || "0", 10)
 
 
-        const posts = limit && limit > 0 ? await Blog.find().sort({ createdAt: -1 }).limit(limit) : await Blog.find().sort({ createdAt: -1 });
+        const postsQuery = limit && limit > 0 ? Blog.find().sort({ createdAt: -1 }).limit(limit) : Blog.find().sort({ createdAt: -1 });
 
 
-        // const posts = postsQuery
+        const posts = await postsQuery
 
         return NextResponse.json({
             posts,

@@ -75,7 +75,7 @@ const SingleBlog = () => {
                         </div>
                     </div>
                 </div>
-                <div className="p-8 md:px-24 lg:px-[280px]">
+                <div className="px-5 py-8 md:px-24 lg:px-[280px]">
                     <div>
                         <div dangerouslySetInnerHTML={{ __html: post?.content }}></div>
                         <div className="mt-12">

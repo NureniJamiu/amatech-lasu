@@ -36,7 +36,7 @@ const Blogs = () => {
     return (
         <section>
             <TitleHero title="Blog Posts" />
-            {posts && !isLoading ? <div className="px-8 md:px-24">
+            {posts && !isLoading ? <div className="px-5 md:px-24">
                 <div className="flex gap-3 items-center mb-12 mt-5 py-8 md:py-8 border-b text-sm md:text-[15px]">
                     <span className="text-gray-600">Category:</span>
                     <select className="w-28 text-center text-green-600 border rounded py-2">
