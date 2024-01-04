@@ -13,7 +13,7 @@ const LatestNews = () => {
         async function fetchData() {
             setIsLoading(true)
             try {
-                const { data } = await axios.get(`/api/posts?limit=6`);
+                const { data } = await axios.get(`/api/posts`);
                 setPosts(data.posts);
                 setIsLoading(false)
             } catch (error) {
