@@ -13,7 +13,8 @@ const SocialsBanner = () => {
                         <p className="mb-3">
                             Follow us on Social Media for news, updates and more...
                         </p>
-                        <span>#WeAreMTech, #WeAreMAD</span>
+                        <span>#WeAreMTech,</span> <br />
+                        <span>#WeAreMAD (Making A Difference)</span>
                     </div>
                     <div className="flex items-center gap-4 text-lg">
                         <Link href="#" className="hover:text-white">
