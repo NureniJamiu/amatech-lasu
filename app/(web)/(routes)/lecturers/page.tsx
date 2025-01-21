@@ -39,7 +39,7 @@ const Page = () => {
     <section>
       <TitleHero title="Lecturers" />
       {lecturers && !isLoading ? (
-        <div className="my-12 px-8 md:px-24">
+        <div className="my-12 px-8 max-w-7xl mx-auto">
           {lecturers ? (
             <CustomCarousel data={lecturers} />
           ) : (
