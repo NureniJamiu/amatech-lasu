@@ -86,9 +86,9 @@ const SingleBlog = () => {
           <div>
             <div dangerouslySetInnerHTML={{ __html: post?.content }}></div>
             <div className="mt-12">
-              <p>Comr. Nureni Jamiu (Penocrat),</p>
+              <p>Comr. Ademola Fagbemi,</p>
               <p>Public Relations Officer (P.R.O),</p>
-              <p>Amatech Lasu 21st Administration, {"'"}23.</p>
+              <p>Amatech Lasu 23rd Administration, {"'"}25.</p>
             </div>
           </div>
         </div>
