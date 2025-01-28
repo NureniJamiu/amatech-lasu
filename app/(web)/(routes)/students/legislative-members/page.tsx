@@ -6,7 +6,7 @@ import TitleHero from "../../../_components/TitleHero";
 // import axios from "axios";
 // import { Loader } from "lucide-react";
 
-// added this line to force an update from the server
+// added this line to force an update from the server.
 
 const Legislative = () => {
   // const [members, setMembers] = useState([]);
