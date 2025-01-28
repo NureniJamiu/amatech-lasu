@@ -146,58 +146,45 @@ export const secondSemester100 = [
 
 export const firstSemester200 = [
   {
-    courseCode: "ACC101",
-    courseTitle: "Introduction to Accounting",
+    courseCode: "PMG211",
+    courseTitle: "Stakeholder Management",
     creditUnit: "2",
     status: "C",
   },
   {
-    courseCode: "CSC201",
-    courseTitle:
-      "Computer application for Arts, Education, Law, Mgt. & Social sciences II",
+    courseCode: "PMG213",
+    courseTitle: "Project Finance & Resource Management",
     creditUnit: "2",
     status: "C",
   },
   {
-    courseCode: "ECO201",
-    courseTitle: "Microeconomics I",
+    courseCode: "PMG221",
+    courseTitle: "Project Scheduling & Cost Management",
     creditUnit: "2",
     status: "C",
   },
   {
-    courseCode: "ECO203",
-    courseTitle: "Macroeconomics I",
-    creditUnit: "2",
-    status: "R",
-  },
-  {
-    courseCode: "GNS201",
-    courseTitle: "Lagos and its environments",
+    courseCode: "PMG223",
+    courseTitle: "Project Planning & Work-based Learning",
     creditUnit: "2",
     status: "C",
   },
   {
-    courseCode: "MAT205",
-    courseTitle: "Statistics for Management & Social sciences",
+    courseCode: "MTE211",
+    courseTitle: "Engineering Economics for Project Managers",
     creditUnit: "2",
     status: "C",
   },
   {
-    courseCode: "MAT251",
-    courseTitle: "Mathematical Methods I",
-    creditUnit: "3",
+    courseCode: "MTE215",
+    courseTitle: "Operations Management I",
+    creditUnit: "2",
     status: "C",
   },
   {
-    courseCode: "MTE203",
-    courseTitle: "Workshop Practice III",
-    creditUnit: "1",
-    status: "C",
-  },
-  {
-    courseCode: "MTE205",
-    courseTitle: "Engineering Drawing III",
-    creditUnit: "1",
+    courseCode: "MTE223",
+    courseTitle: "Project Evaluation & Feasibility Study",
+    creditUnit: "2",
     status: "C",
   },
   {
@@ -207,9 +194,15 @@ export const firstSemester200 = [
     status: "E",
   },
   {
-    courseCode: "PSY205",
-    courseTitle: "Industrial Organizational Psychology",
-    creditUnit: "3",
+    courseCode: "MTE217",
+    courseTitle: "Industtrial Economics for Project Managers",
+    creditUnit: "2",
+    status: "E",
+  },
+  {
+    courseCode: "MTE219",
+    courseTitle: "Material Management",
+    creditUnit: "2",
     status: "C",
   },
 ];
